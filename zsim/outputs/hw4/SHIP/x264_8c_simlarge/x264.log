@@ -1,0 +1,7 @@
+[H] Starting zsim, built Tue Apr 15 15:22:52 CDT 2025 (rev no git repo)
+[H] Creating global segment, 1024 MBs
+[H] Global segment shmid = 65593
+[H] Deadlock detection ON
+/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/benchmarks/parsec-2.1/bin/x264 : Permission denied
+[H] Child 1833848 done
+[H] All children done, exiting

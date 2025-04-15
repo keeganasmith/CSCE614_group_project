@@ -1,9 +1,9 @@
-Running on: olympus.ece.tamu.edu
-Start time: Mon Mar 10 13:20:18 2025
-Heartbeat time: Mon Mar 10 13:21:00 2025
+Running on: ac053
+Start time: Tue Apr 15 15:11:06 2025
+Heartbeat time: Tue Apr 15 15:11:41 2025
 Stats since start:
- 10699 phases
- 106990000 cycles
- 2547380 cycles/s
-Stats since last heartbeat (2s):
- 18975000 cycles/s
+ 10675 phases
+ 106750000 cycles
+ 3050000 cycles/s
+Stats since last heartbeat (5s):
+ 14136000 cycles/s

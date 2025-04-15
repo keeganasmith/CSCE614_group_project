@@ -1,6 +1,6 @@
-[H] Starting zsim, built Mon Mar 10 12:59:14 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 14:27:35 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 962068484
+[H] Global segment shmid = 1310731
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -22,16 +22,16 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/cactusADM/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3136 bytes/record, 1 records/write
 [S 0] Initialization complete
-[H] Attached to global heap
-[S 0] Started process, PID 2898950
+[S 0] Started process, PID 2748949
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] FFI mode initialized, 2 ffiPoints
 [S 0] vDSO info initialized
+[H] Attached to global heap
 [S 0] FF thread 0 starting
 [S 0] Started contention simulation thread 0
-[S 0] FF control Thread TID 2898964
 [S 0] Started scheduler watchdog thread
+[S 0] FF control Thread TID 2749012
 --------------------------------------------------------------------------------
 
        10                                  
@@ -47,7 +47,7 @@
 --------------------------------------------------------------------------------
 
 Cactus version: 4.0.b11
-Parameter file: /home/grads/y/yyy2000/classes/csce614/casim-csce614/benchmarks/spec_cpu2006/data/cactusADM/benchADM.par
+Parameter file: /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/benchmarks/spec_cpu2006/data/cactusADM/benchADM.par
 --------------------------------------------------------------------------------
 
 Activating thorn Cactus...Success -> active implementation Cactus
@@ -152,7 +152,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    10 |    0.010 |   0.99999835 |   1.00000076 |  -0.00000060 |   0.00000060 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -169,7 +168,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    30 |    0.030 |   0.99998407 |   1.00000738 |  -0.00000583 |   0.00000583 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -177,9 +175,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    40 |    0.040 |   0.99997146 |   1.00001321 |  -0.00001044 |   0.00001044 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -203,9 +199,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    70 |    0.070 |   0.99991210 |   1.00004068 |  -0.00003229 |   0.00003229 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -229,7 +223,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   100 |    0.100 |   0.99982117 |   1.00008275 |  -0.00006606 |   0.00006606 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -237,190 +230,3 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  110 |    0.110 |   0.99978403 |   1.00009992 |  -0.00007995 |   0.00007995 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  120 |    0.120 |   0.99974354 |   1.00011862 |  -0.00009515 |   0.00009515 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  130 |    0.130 |   0.99969975 |   1.00013885 |  -0.00011165 |   0.00011165 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  140 |    0.140 |   0.99965268 |   1.00016058 |  -0.00012946 |   0.00012946 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  150 |    0.150 |   0.99960237 |   1.00018379 |  -0.00014856 |   0.00014856 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  160 |    0.160 |   0.99954885 |   1.00020848 |  -0.00016896 |   0.00016896 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  170 |    0.170 |   0.99949212 |   1.00023462 |  -0.00019066 |   0.00019066 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  180 |    0.180 |   0.99943222 |   1.00026222 |  -0.00021364 |   0.00021364 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  190 |    0.190 |   0.99936914 |   1.00029125 |  -0.00023792 |   0.00023792 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  200 |    0.200 |   0.99930289 |   1.00032173 |  -0.00026350 |   0.00026350 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  210 |    0.210 |   0.99923347 |   1.00035366 |  -0.00029036 |   0.00029036 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  220 |    0.220 |   0.99916087 |   1.00038702 |  -0.00031852 |   0.00031852 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  230 |    0.230 |   0.99908508 |   1.00042185 |  -0.00034797 |   0.00034797 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  240 |    0.240 |   0.99900608 |   1.00045813 |  -0.00037872 |   0.00037872 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  250 |    0.250 |   0.99892387 |   1.00049588 |  -0.00041077 |   0.00041077 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  260 |    0.260 |   0.99883841 |   1.00053512 |  -0.00044411 |   0.00044411 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  270 |    0.270 |   0.99874968 |   1.00057586 |  -0.00047876 |   0.00047876 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  280 |    0.280 |   0.99865767 |   1.00061812 |  -0.00051471 |   0.00051471 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  290 |    0.290 |   0.99856236 |   1.00066190 |  -0.00055196 |   0.00055196 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  300 |    0.300 |   0.99846371 |   1.00070723 |  -0.00059053 |   0.00059053 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  310 |    0.310 |   0.99836171 |   1.00075412 |  -0.00063040 |   0.00063040 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-  320 |    0.320 |   0.99825634 |   1.00080259 |  -0.00067159 |   0.00067159 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[S 0] ffiPoint reached, 874300000011 instrs, limit 874300000000
-[S 0] FFI: Exiting fast-forward
-[S 0] [0] Adjusting clocks, domain 0, de-ffwd 1
-[S 0] Thread 0 starting
-[S 0] FFI: Entering fast-forward for process 0
-[S 0] Thread 0 entering fast-forward
-[S 0] Last ffiPoint reached, 874400011281 instrs, limit 874400000000
-[S 0] Dumping termination stats
-[H] Child 2898950 done
-[H] All children done, exiting

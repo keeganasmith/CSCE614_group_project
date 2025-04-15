@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=LFU_policy
+#SBATCH --time=10:00:00 --mem-per-cpu=5G
+#SBATCH --ntasks=32 --nodes=1 --cpus-per-task=1
+#SBATCH --output=LFU_OUT
+#SBATCH --partition=cpu 
+
+module purge
+module load WebProxy 
+cd /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/
+source modules.sh
+source venv/bin/activate
+source setup.sh
+cd zsim
+scons -j4
+bash run_all.sh SPEC LFU &
+bash run_all.sh PARSEC LFU &
+wait
