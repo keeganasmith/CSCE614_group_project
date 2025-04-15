@@ -1,6 +1,6 @@
-[H] Starting zsim, built Tue Apr 15 14:27:35 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 1310724
+[H] Global segment shmid = 786481
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -22,16 +22,89 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/hmmer/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3136 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 2748931
+[S 0] Started process, PID 2656540
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] FFI mode initialized, 2 ffiPoints
 [S 0] vDSO info initialized
 [H] Attached to global heap
+[S 0] Started contention simulation thread 0
 [S 0] FF thread 0 starting
 [S 0] Started scheduler watchdog thread
-[S 0] FF control Thread TID 2749013
-[S 0] Started contention simulation thread 0
+[S 0] FF control Thread TID 2656579
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)

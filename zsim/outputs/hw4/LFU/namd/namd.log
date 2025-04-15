@@ -1,6 +1,6 @@
-[H] Starting zsim, built Tue Apr 15 14:27:35 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 1310734
+[H] Global segment shmid = 786489
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -22,23 +22,24 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/namd/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3136 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 2748980
+[S 0] Started process, PID 2656606
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] FFI mode initialized, 2 ffiPoints
 [S 0] vDSO info initialized
 [H] Attached to global heap
-[S 0] FF thread 0 starting
 [S 0] Started contention simulation thread 0
+[S 0] FF control Thread TID 2656639
 [S 0] Started scheduler watchdog thread
-[S 0] FF control Thread TID 2749024
-[S 0] ffiPoint reached, 500000000 instrs, limit 500000000
+[S 0] FF thread 0 starting
+[S 0] ffiPoint reached, 500000006 instrs, limit 500000000
 [S 0] FFI: Exiting fast-forward
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 1
 [S 0] Thread 0 starting
 [S 0] FFI: Entering fast-forward for process 0
 [S 0] Thread 0 entering fast-forward
-[S 0] Last ffiPoint reached, 600000978 instrs, limit 600000000
+[S 0] Last ffiPoint reached, 600008749 instrs, limit 600000000
 [S 0] Dumping termination stats
-[H] Child 2748980 done
+[S 0] Finished scheduler watchdog thread
+[H] Child 2656606 done
 [H] All children done, exiting

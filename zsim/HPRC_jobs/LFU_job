@@ -11,6 +11,7 @@ cd /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/
 source modules.sh
 source venv/bin/activate
 source setup.sh
+echo "${CPU2006DATA}/milc/"
 cd zsim
 scons -j4
 bash run_all.sh SPEC LFU &

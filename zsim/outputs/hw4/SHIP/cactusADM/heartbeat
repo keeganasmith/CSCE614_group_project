@@ -1,9 +1,9 @@
-Running on: ac018
-Start time: Tue Apr 15 15:22:55 2025
-Heartbeat time: Tue Apr 15 15:23:25 2025
+Running on: ac053
+Start time: Tue Apr 15 15:52:39 2025
+Heartbeat time: Tue Apr 15 16:28:53 2025
 Stats since start:
- 0 phases
- 0 cycles
- 0 cycles/s
-Stats since last heartbeat (10s):
- 0 cycles/s
+ 8411 phases
+ 84110000 cycles
+ 38689 cycles/s
+Stats since last heartbeat (4s):
+ 10430000 cycles/s

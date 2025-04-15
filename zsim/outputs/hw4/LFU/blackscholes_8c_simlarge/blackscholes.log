@@ -1,6 +1,6 @@
-[H] Starting zsim, built Mon Mar 10 12:59:14 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 963674138
+[H] Global segment shmid = 786474
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -29,14 +29,14 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/blackscholes_8c_simlarge/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3192 bytes/record, 1 records/write
 [S 0] Initialization complete
-[H] Attached to global heap
-[S 0] Started process, PID 3017878
+[S 0] Started process, PID 2656505
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] vDSO info initialized
-[S 0] FF thread 0 starting
+[H] Attached to global heap
 [S 0] Started contention simulation thread 0
-[S 0] FF control Thread TID 3017886
+[S 0] FF thread 0 starting
+[S 0] FF control Thread TID 2656546
 [S 0] Started scheduler watchdog thread
 PARSEC Benchmark Suite Version 2.1
 [HOOKS] PARSEC Hooks Version 1.2
@@ -56,17 +56,18 @@ Size of data: 2621440
 [S 0] Thread 10 starting
 [S 0] Thread 11 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/0] INVALID (202) @ 0x412562
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x412562 | arg0 0x7fffe30019d0 arg1 0x0
+[S 0]  [0/0] futex (202) @ 0x412562
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x412562 | arg0 0x155540cfe9d0 arg1 0x0
 [S 0] Thread 10 finished
-[S 0] Thread 5 finished
 [S 0] Thread 4 finished
+[S 0] Thread 5 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 8 finished
 [S 0] Thread 7 finished
 [S 0] Thread 6 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 9 finished
+[S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 11 finished
 [S 0] WARN: External futex wakes? (0/0)
 [ZSIM-HOOKS] ROI begin
@@ -74,11 +75,10 @@ Size of data: 2621440
 [S 0] ROI_END, entering fast-forward
 [S 0] Thread 0 entering fast-forward
 [ZSIM-HOOKS] ROI end
-[HOOKS] Total time spent in ROI: 0.168s
+[HOOKS] Total time spent in ROI: 0.166s
 [HOOKS] Terminating
 [S 0] Shadow/NOP thread 0 finished
 [S 0] Finished, code 0
 [S 0] Dumping termination stats
-[S 0] Finished scheduler watchdog thread
-[H] Child 3017878 done
+[H] Child 2656505 done
 [H] All children done, exiting

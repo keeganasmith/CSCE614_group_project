@@ -26,7 +26,7 @@ if [ "$suite" = "SPEC" ]; then
     done
 elif [ "$suite" = "PARSEC" ]; then
     # List of PARSEC benchmarks.
-    PARSEC_BENCHS="blackschoels bodytrack fluidanimate streamcluster swaptions canneal x264"
+    PARSEC_BENCHS="blackscholes bodytrack fluidanimate streamcluster swaptions canneal x264"
     for bench in $PARSEC_BENCHS; do
         # Create the output directory; note the PARSEC configs use an _8c_simlarge suffix.
         mkdir -p outputs/hw4/$repl/${bench}_8c_simlarge

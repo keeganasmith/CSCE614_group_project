@@ -19,7 +19,7 @@ def get_stat(policy, benchmark):
     print(f"    Cycles: {total_cycles}")
     print("-------------------------")
 
-policies = ["LFU", "LRU", "SRRIP"]
+policies = ["LFU", "LRU", "SHIP"]
 
 PARSEC_benchmarks = ["blackscholes_8c_simlarge", "bodytrack_8c_simlarge", "canneal_8c_simlarge", "fluidanimate_8c_simlarge", "streamcluster_8c_simlarge", "swaptions_8c_simlarge", "x264_8c_simlarge"]
 for benchmark in PARSEC_benchmarks:
@@ -27,7 +27,7 @@ for benchmark in PARSEC_benchmarks:
         print(f"{policy:}")
         get_stat(policy, benchmark)
 
-SPEC_benchmarks = ["bzip2", "cactusADM", "calculix", "gcc", "hmmer", "lbm", "libquantum", "mcf", "namd", "sjeng", "soplex", "xalan"]
+SPEC_benchmarks = ["bzip2", "gcc", "mcf", "hmmer", "xalan", "milc", "cactusADM", "leslie3d", "namd", "calculix", "sjeng", "libquantum", "soplex","lbm"]
 for benchmark in SPEC_benchmarks:
     for policy in policies:
         print(f"{policy:}")

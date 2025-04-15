@@ -3,11 +3,11 @@
 root: # Stats
  contention: # Contention simulation stats
   domain-0: # Domain stats
-   time: 148784785 # Weave simulation time
+   time: 155013670 # Weave simulation time
  time: # Simulator time breakdown
-  init: 314215076007
-  bound: 7429941828
-  weave: 248268725
+  init: 313053082020
+  bound: 7303945462
+  weave: 254341331
   ff: 0
  trigger: 20000 # Reason for this stats dump
  phase: 12338 # Simulated phases
