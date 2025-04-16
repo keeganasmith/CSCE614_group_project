@@ -1,8 +1,8 @@
-[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 21:54:13 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 1310774
+[H] Global segment shmid = 98360
 [H] Deadlock detection ON
 open() failed: No such file or directory
 [H] Panic on build/opt/zsim_harness.cpp:277: Could not open input redirection file $CPU2006DATA/leslie3d/leslie3d.in
-[H] Child 2753529 done
+[H] Child 1842263 done
 [H] Panic on build/opt/zsim_harness.cpp:118: Child issued a panic, killing simulation

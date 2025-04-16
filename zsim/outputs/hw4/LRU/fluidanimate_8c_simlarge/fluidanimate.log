@@ -1,6 +1,6 @@
 [H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 1409026
+[H] Global segment shmid = 1736710
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -29,14 +29,14 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LRU/fluidanimate_8c_simlarge/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3192 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 2285478
+[S 0] Started process, PID 2767687
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] vDSO info initialized
 [H] Attached to global heap
 [S 0] Started contention simulation thread 0
 [S 0] FF thread 0 starting
-[S 0] FF control Thread TID 2285538
+[S 0] FF control Thread TID 2767800
 [S 0] Started scheduler watchdog thread
 PARSEC Benchmark Suite Version 2.1
 [HOOKS] PARSEC Hooks Version 1.2
@@ -57,26 +57,23 @@ Number of particles: 305809 (0 skipped)
 [S 0] Thread 11 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
 [S 0]  [0/0] futex (202) @ 0x470612
-[S 0] Blacklisting from future fake leaves: [0] futex @ 0x470612 | arg0 0x1555334a19d0 arg1 0x0
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x470612 | arg0 0x15553349f9d0 arg1 0x0
 [S 0] Detected possible stall due to fake leaves (1 current)
 [S 0]  [0/6] futex (202) @ 0x471612
 [S 0] Blacklisting from future fake leaves: [0] futex @ 0x471612 | arg0 0x78ef0c arg1 0x80
-[S 0] Detected possible stall due to fake leaves (2 current)
-[S 0]  [0/8] futex (202) @ 0x471e8a
-[S 0]  [0/4] futex (202) @ 0x471e8a
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/4] futex (202) @ 0x471e8a
+[S 0]  [0/5] futex (202) @ 0x471e8a
 [S 0] Blacklisting from future fake leaves: [0] futex @ 0x471e8a | arg0 0x78eee0 arg1 0x80
-[S 0] Max total (aggregate) instructions reached (5000004026)
+[S 0] Max total (aggregate) instructions reached (5000014273)
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
 [S 0] Termination condition met, exiting
 [S 0] Dumping termination stats
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
 [S 0] Terminating scheduler watchdog thread
-[H] Child 2285478 done
+[H] Child 2767687 done
 [H] All children done, exiting

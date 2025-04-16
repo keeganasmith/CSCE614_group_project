@@ -3,7 +3,7 @@
 #SBATCH --time=10:00:00 --mem-per-cpu=5G
 #SBATCH --ntasks=32 --nodes=1 --cpus-per-task=1
 #SBATCH --output=LFU_OUT
-#SBATCH --partition=cpu 
+#SBATCH --partition=staff 
 
 module purge
 module load WebProxy 

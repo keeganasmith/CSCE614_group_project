@@ -27,7 +27,7 @@ for benchmark in PARSEC_benchmarks:
         print(f"{policy:}")
         get_stat(policy, benchmark)
 
-SPEC_benchmarks = ["bzip2", "gcc", "mcf", "hmmer", "xalan", "milc", "cactusADM", "leslie3d", "namd", "calculix", "sjeng", "libquantum", "soplex","lbm"]
+SPEC_benchmarks = ["bzip2", "gcc", "mcf", "hmmer", "xalan", "cactusADM", "namd", "calculix", "sjeng", "libquantum", "soplex","lbm"]
 for benchmark in SPEC_benchmarks:
     for policy in policies:
         print(f"{policy:}")

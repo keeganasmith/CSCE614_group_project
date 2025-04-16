@@ -1,6 +1,6 @@
-[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 21:54:13 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 786474
+[H] Global segment shmid = 131072
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -29,14 +29,14 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/blackscholes_8c_simlarge/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3192 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 2656505
+[S 0] Started process, PID 1844824
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] vDSO info initialized
 [H] Attached to global heap
-[S 0] Started contention simulation thread 0
 [S 0] FF thread 0 starting
-[S 0] FF control Thread TID 2656546
+[S 0] Started contention simulation thread 0
+[S 0] FF control Thread TID 1844868
 [S 0] Started scheduler watchdog thread
 PARSEC Benchmark Suite Version 2.1
 [HOOKS] PARSEC Hooks Version 1.2
@@ -57,16 +57,17 @@ Size of data: 2621440
 [S 0] Thread 11 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
 [S 0]  [0/0] futex (202) @ 0x412562
-[S 0] Blacklisting from future fake leaves: [0] futex @ 0x412562 | arg0 0x155540cfe9d0 arg1 0x0
-[S 0] Thread 10 finished
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x412562 | arg0 0x155540d099d0 arg1 0x0
+[S 0] Thread 9 finished
 [S 0] Thread 4 finished
-[S 0] Thread 5 finished
 [S 0] WARN: External futex wakes? (0/0)
-[S 0] Thread 8 finished
-[S 0] Thread 7 finished
+[S 0] Thread 5 finished
 [S 0] Thread 6 finished
 [S 0] WARN: External futex wakes? (0/0)
-[S 0] Thread 9 finished
+[S 0] Thread 7 finished
+[S 0] Thread 10 finished
+[S 0] WARN: External futex wakes? (0/0)
+[S 0] Thread 8 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 11 finished
 [S 0] WARN: External futex wakes? (0/0)
@@ -80,5 +81,5 @@ Size of data: 2621440
 [S 0] Shadow/NOP thread 0 finished
 [S 0] Finished, code 0
 [S 0] Dumping termination stats
-[H] Child 2656505 done
+[H] Child 1844824 done
 [H] All children done, exiting

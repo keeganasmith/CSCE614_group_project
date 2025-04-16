@@ -1,6 +1,6 @@
-[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 21:54:13 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 1310772
+[H] Global segment shmid = 98358
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -22,16 +22,16 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/SHIP/cactusADM/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3136 bytes/record, 1 records/write
 [S 0] Initialization complete
-[H] Attached to global heap
-[S 0] Started process, PID 2753512
+[S 0] Started process, PID 1842255
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] FFI mode initialized, 2 ffiPoints
 [S 0] vDSO info initialized
+[H] Attached to global heap
 [S 0] Started contention simulation thread 0
-[S 0] FF control Thread TID 2753561
-[S 0] Started scheduler watchdog thread
 [S 0] FF thread 0 starting
+[S 0] FF control Thread TID 1842334
+[S 0] Started scheduler watchdog thread
 --------------------------------------------------------------------------------
 
        10                                  
@@ -175,8 +175,8 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    40 |    0.040 |   0.99997146 |   1.00001321 |  -0.00001044 |   0.00001044 |
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -292,8 +292,8 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   190 |    0.190 |   0.99936914 |   1.00029125 |  -0.00023792 |   0.00023792 |
+[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -394,14 +394,13 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   320 |    0.320 |   0.99825634 |   1.00080259 |  -0.00067159 |   0.00067159 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[S 0] ffiPoint reached, 874300000020 instrs, limit 874300000000
+[S 0] ffiPoint reached, 874300000025 instrs, limit 874300000000
 [S 0] FFI: Exiting fast-forward
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 1
 [S 0] Thread 0 starting
 [S 0] FFI: Entering fast-forward for process 0
 [S 0] Thread 0 entering fast-forward
-[S 0] Last ffiPoint reached, 874400010610 instrs, limit 874400000000
+[S 0] Last ffiPoint reached, 874400007627 instrs, limit 874400000000
 [S 0] Dumping termination stats
-[S 0] Finished scheduler watchdog thread
-[H] Child 2753512 done
+[H] Child 1842255 done
 [H] All children done, exiting
