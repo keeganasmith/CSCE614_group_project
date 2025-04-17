@@ -1,6 +1,6 @@
-[H] Starting zsim, built Mon Mar 10 12:59:14 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 21:54:13 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 994639913
+[H] Global segment shmid = 131085
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -29,15 +29,15 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LFU/x264_8c_simlarge/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3192 bytes/record, 1 records/write
 [S 0] Initialization complete
-[H] Attached to global heap
-[S 0] Started process, PID 1960234
+[S 0] Started process, PID 1844908
 [S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] vDSO info initialized
+[H] Attached to global heap
 [S 0] FF thread 0 starting
+[S 0] FF control Thread TID 1844947
 [S 0] Started contention simulation thread 0
 [S 0] Started scheduler watchdog thread
-[S 0] FF control Thread TID 1960242
 PARSEC Benchmark Suite Version 2.1
 [HOOKS] PARSEC Hooks Version 1.2
 yuv4mpeg: 640x360@25/1fps, 0:0
@@ -53,21 +53,18 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] Thread 7 starting
 [S 0] Thread 8 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/7] INVALID (202) @ 0x4d36c2
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x4d36c2 | arg0 0x8911ec arg1 0x80
+[S 0]  [0/7] futex (202) @ 0x4d36c2
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x4d36c2 | arg0 0x89170c arg1 0x80
 [S 0] Thread 8 finished
 [S 0] Thread 9 starting
 [S 0] Thread 10 starting
-[S 0] Thread 10 finished
+[S 0] Thread 9 finished
 [S 0] Thread 11 starting
 [S 0] Thread 12 starting
 [S 0] Thread 12 finished
 [S 0] Thread 13 starting
 [S 0] Thread 14 starting
 [S 0] Thread 14 finished
-[S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/9] INVALID (202) @ 0x4d3f3a
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x4d3f3a | arg0 0x8f5760 arg1 0x80
 [S 0] Thread 15 starting
 [S 0] Thread 16 starting
 [S 0] Thread 16 finished
@@ -76,8 +73,11 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] Thread 18 finished
 [S 0] Thread 19 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/0] INVALID (202) @ 0x4d27a2
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x4d27a2 | arg0 0x7fffe0b799d0 arg1 0x0
+[S 0]  [0/0] futex (202) @ 0x4d27a2
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x4d27a2 | arg0 0x15553e8549d0 arg1 0x0
+[S 0] Detected possible stall due to fake leaves (1 current)
+[S 0]  [0/11] futex (202) @ 0x4d3f3a
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x4d3f3a | arg0 0x95a220 arg1 0x80
 [S 0] Thread 5 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 20 starting
@@ -86,7 +86,7 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] Thread 21 starting
 [S 0] Thread 22 starting
 [S 0] Thread 22 finished
-[S 0] Thread 9 finished
+[S 0] Thread 10 finished
 [S 0] Thread 23 starting
 [S 0] Thread 24 starting
 [S 0] Thread 24 finished
@@ -162,7 +162,7 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 50 starting
 [S 0] WARN: waitUntilQueued for pid 0 tid 50 timed out
-[S 0] WARN: waitUntilQueued for pid 0 tid 47 timed out
+[S 0] WARN: waitUntilQueued for pid 0 tid 45 timed out
 [S 0] Thread 50 finished
 [S 0] Thread 51 starting
 [S 0] Thread 37 finished
@@ -188,7 +188,6 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 58 starting
 [S 0] WARN: waitUntilQueued for pid 0 tid 58 timed out
-[S 0] WARN: waitUntilQueued for pid 0 tid 55 timed out
 [S 0] Thread 58 finished
 [S 0] Thread 59 starting
 [S 0] Thread 45 finished
@@ -212,6 +211,7 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] Thread 51 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 66 starting
+[S 0] WARN: waitUntilQueued for pid 0 tid 66 timed out
 [S 0] Thread 66 finished
 [S 0] Thread 67 starting
 [S 0] Thread 53 finished
@@ -229,12 +229,14 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 72 starting
 [S 0] WARN: waitUntilQueued for pid 0 tid 72 timed out
+[S 0] WARN: waitUntilQueued for pid 0 tid 69 timed out
 [S 0] Thread 72 finished
 [S 0] Thread 73 starting
 [S 0] Thread 59 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 74 starting
 [S 0] WARN: waitUntilQueued for pid 0 tid 74 timed out
+[S 0] WARN: waitUntilQueued for pid 0 tid 71 timed out
 [S 0] Thread 74 finished
 [S 0] Thread 75 starting
 [S 0] Thread 61 finished
@@ -243,18 +245,17 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] WARN: waitUntilQueued for pid 0 tid 76 timed out
 [S 0] Thread 76 finished
 [S 0] Thread 77 starting
-[S 0] WARN: waitUntilQueued for pid 0 tid 77 timed out
 [S 0] Thread 63 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 78 starting
-[S 0] WARN: waitUntilQueued for pid 0 tid 78 timed out
 [S 0] Thread 78 finished
 [S 0] Thread 79 starting
 [S 0] Thread 65 finished
 [S 0] WARN: External futex wakes? (0/0)
 [S 0] Thread 80 starting
+[S 0] WARN: waitUntilQueued for pid 0 tid 80 timed out
 [S 0] Thread 80 finished
-[S 0] Max total (aggregate) instructions reached (5000049512)
+[S 0] Max total (aggregate) instructions reached (5000054387)
 [S 0] Termination condition met, exiting
 [S 0] Dumping termination stats
 [S 0] Termination condition met, exiting
@@ -264,5 +265,5 @@ yuv4mpeg: 640x360@25/1fps, 0:0
 [S 0] Termination condition met, exiting
 [S 0] Termination condition met, exiting
 [S 0] Terminating scheduler watchdog thread
-[H] Child 1960234 done
+[H] Child 1844908 done
 [H] All children done, exiting

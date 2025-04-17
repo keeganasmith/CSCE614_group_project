@@ -1,6 +1,6 @@
-[H] Starting zsim, built Mon Mar 10 12:59:14 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 962068490
+[H] Global segment shmid = 1736718
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -22,16 +22,16 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LRU/cactusADM/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3136 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 2899272
+[S 0] Started process, PID 2767726
 [S 0] procMask: 0x0
-[H] Attached to global heap
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] FFI mode initialized, 2 ffiPoints
+[H] Attached to global heap
 [S 0] vDSO info initialized
+[S 0] FF control Thread TID 2767808
+[S 0] Started scheduler watchdog thread
 [S 0] FF thread 0 starting
 [S 0] Started contention simulation thread 0
-[S 0] Started scheduler watchdog thread
-[S 0] FF control Thread TID 2899280
 --------------------------------------------------------------------------------
 
        10                                  
@@ -47,7 +47,7 @@
 --------------------------------------------------------------------------------
 
 Cactus version: 4.0.b11
-Parameter file: /home/grads/y/yyy2000/classes/csce614/casim-csce614/benchmarks/spec_cpu2006/data/cactusADM/benchADM.par
+Parameter file: /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/benchmarks/spec_cpu2006/data/cactusADM/benchADM.par
 --------------------------------------------------------------------------------
 
 Activating thorn Cactus...Success -> active implementation Cactus
@@ -152,7 +152,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    10 |    0.010 |   0.99999835 |   1.00000076 |  -0.00000060 |   0.00000060 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -177,7 +176,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    40 |    0.040 |   0.99997146 |   1.00001321 |  -0.00001044 |   0.00001044 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -185,9 +183,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    50 |    0.050 |   0.99995525 |   1.00002072 |  -0.00001640 |   0.00001640 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -204,7 +200,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
    70 |    0.070 |   0.99991210 |   1.00004068 |  -0.00003229 |   0.00003229 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -236,7 +231,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   110 |    0.110 |   0.99978403 |   1.00009992 |  -0.00007995 |   0.00007995 |
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -246,8 +240,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   120 |    0.120 |   0.99974354 |   1.00011862 |  -0.00009515 |   0.00009515 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -278,9 +270,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   160 |    0.160 |   0.99954885 |   1.00020848 |  -0.00016896 |   0.00016896 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -318,9 +308,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   210 |    0.210 |   0.99923347 |   1.00035366 |  -0.00029036 |   0.00029036 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -337,7 +325,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   230 |    0.230 |   0.99908508 |   1.00042185 |  -0.00034797 |   0.00034797 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -361,7 +348,6 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   260 |    0.260 |   0.99883841 |   1.00053512 |  -0.00044411 |   0.00044411 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -392,9 +378,7 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   300 |    0.300 |   0.99846371 |   1.00070723 |  -0.00059053 |   0.00059053 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
@@ -410,15 +394,14 @@ INFO (IOBasic): Info: Output requested for BENCHADM::ADM_gxx BENCHADM::ADM_gyz
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
 [H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
   320 |    0.320 |   0.99825634 |   1.00080259 |  -0.00067159 |   0.00067159 |
-[H] Some fast-forwarding is going on, not doing deadlock detection (a: 1, ff: 1, sff: 0)
-[S 0] ffiPoint reached, 874300000002 instrs, limit 874300000000
+[S 0] ffiPoint reached, 874300000063 instrs, limit 874300000000
 [S 0] FFI: Exiting fast-forward
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 1
 [S 0] Thread 0 starting
 [S 0] FFI: Entering fast-forward for process 0
 [S 0] Thread 0 entering fast-forward
-[S 0] Last ffiPoint reached, 874400009253 instrs, limit 874400000000
+[S 0] Last ffiPoint reached, 874400010233 instrs, limit 874400000000
 [S 0] Dumping termination stats
 [S 0] Finished scheduler watchdog thread
-[H] Child 2899272 done
+[H] Child 2767726 done
 [H] All children done, exiting

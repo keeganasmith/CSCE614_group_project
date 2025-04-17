@@ -1,0 +1,29 @@
+scons: Reading SConscript files ...
+Building opt zsim at build/opt
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -o build/opt/libzsim.so -Wl,-R/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/local/lib -Wl,--hash-style=sysv -Wl,-Bsymbolic -Wl,--version-script=/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/pin-2.14-71313-gcc.4.4.7-linux/source/include/pin/pintool.ver -shared build/opt/ooo_core.os build/opt/log.os build/opt/virt/fs.os build/opt/proc_stats.os build/opt/decoder.os build/opt/simple_core.os build/opt/trace_driver.os build/opt/timing_core.os build/opt/ooo_core_recorder.os build/opt/monitor.os build/opt/virt/timeout.os build/opt/virt/virt.os build/opt/init.os build/opt/parse_vdso.os build/opt/detailed_mem.os build/opt/lookahead.os build/opt/tracing_cache.os build/opt/process_tree.os build/opt/virt/ports.os build/opt/memory_hierarchy.os build/opt/virt/syscall_name.os build/opt/network.os build/opt/timing_cache.os build/opt/timing_event.os build/opt/ddr_mem.os build/opt/hash.os build/opt/hdf5_stats.os build/opt/debug_zsim.os build/opt/config.os build/opt/cache_arrays.os build/opt/null_core.os build/opt/scheduler.os build/opt/contention_sim.os build/opt/cache.os build/opt/text_stats.os build/opt/dramsim_mem_ctrl.os build/opt/zsim.os build/opt/stats_filter.os build/opt/process_stats.os build/opt/virt/time.os build/opt/prefetcher.os build/opt/core_recorder.os build/opt/utility_monitor.os build/opt/virt/cpu.os build/opt/access_tracing.os build/opt/detailed_mem_params.os build/opt/mem_ctrls.os build/opt/partition_mapper.os build/opt/galloc.os build/opt/coherence_ctrls.os build/opt/pin_cmd.os -L/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/local/lib -L/usr/lib -L/usr/lib/x86_64-linux-gnu -L/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/pin-2.14-71313-gcc.4.4.7-linux/extras/xed-intel64/lib -L/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/pin-2.14-71313-gcc.4.4.7-linux/intel64/lib -L/scratch/user/u.ks124812/CSCE614/CSCE614_group_project/tools/pin-2.14-71313-gcc.4.4.7-linux/intel64/lib-ext -lconfig++ -lpin -lxed -lpindwarf -lelf -ldl -lrt -lhdf5 -lhdf5_hl -lz
+/bin/ld.gold: warning: /sw/eb/sw/GCCcore/10.3.0/lib/gcc/x86_64-pc-linux-gnu/10.3.0/crtbeginS.o: unknown program property type 0xc0010001 in .note.gnu.property section
+/bin/ld.gold: warning: /sw/eb/sw/GCCcore/10.3.0/lib/gcc/x86_64-pc-linux-gnu/10.3.0/crtendS.o: unknown program property type 0xc0010001 in .note.gnu.property section
+scons: done building targets.
+./build/opt/zsim configs/hw4/LRU/bzip2.cfg > outputs/hw4/LRU/bzip2/bzip2.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/blackscholes_8c_simlarge.cfg > outputs/hw4/LRU/blackscholes_8c_simlarge/blackscholes.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/gcc.cfg > outputs/hw4/LRU/gcc/gcc.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/bodytrack_8c_simlarge.cfg > outputs/hw4/LRU/bodytrack_8c_simlarge/bodytrack.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/fluidanimate_8c_simlarge.cfg > outputs/hw4/LRU/fluidanimate_8c_simlarge/fluidanimate.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/mcf.cfg > outputs/hw4/LRU/mcf/mcf.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/streamcluster_8c_simlarge.cfg > outputs/hw4/LRU/streamcluster_8c_simlarge/streamcluster.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/hmmer.cfg > outputs/hw4/LRU/hmmer/hmmer.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/swaptions_8c_simlarge.cfg > outputs/hw4/LRU/swaptions_8c_simlarge/swaptions.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/xalan.cfg > outputs/hw4/LRU/xalan/xalan.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/canneal_8c_simlarge.cfg > outputs/hw4/LRU/canneal_8c_simlarge/canneal.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/milc.cfg > outputs/hw4/LRU/milc/milc.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/x264_8c_simlarge.cfg > outputs/hw4/LRU/x264_8c_simlarge/x264.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/cactusADM.cfg > outputs/hw4/LRU/cactusADM/cactusADM.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/leslie3d.cfg > outputs/hw4/LRU/leslie3d/leslie3d.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/namd.cfg > outputs/hw4/LRU/namd/namd.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/calculix.cfg > outputs/hw4/LRU/calculix/calculix.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/sjeng.cfg > outputs/hw4/LRU/sjeng/sjeng.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/libquantum.cfg > outputs/hw4/LRU/libquantum/libquantum.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/soplex.cfg > outputs/hw4/LRU/soplex/soplex.log 2>&1 &
+./build/opt/zsim configs/hw4/LRU/lbm.cfg > outputs/hw4/LRU/lbm/lbm.log 2>&1 &

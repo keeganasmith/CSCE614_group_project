@@ -1,3 +1,4 @@
 scons
 numpy
 h5py
+matplotlib

@@ -1,6 +1,6 @@
-[H] Starting zsim, built Mon Mar 10 12:59:14 CDT 2025 (rev no git repo)
+[H] Starting zsim, built Tue Apr 15 15:43:06 CDT 2025 (rev no git repo)
 [H] Creating global segment, 1024 MBs
-[H] Global segment shmid = 964362284
+[H] Global segment shmid = 1736712
 [H] Deadlock detection ON
 [S 0] Started instance
 [S 0] Started RR scheduler, quantum=10000 phases
@@ -29,15 +29,15 @@
 [S 0] HDF5 backend: Opening ./outputs/hw4/LRU/streamcluster_8c_simlarge/zsim-cmp.h5
 [S 0] HDF5 backend: Created table, 3192 bytes/record, 1 records/write
 [S 0] Initialization complete
-[S 0] Started process, PID 3054762
-[S 0] procMask: 0x0
 [H] Attached to global heap
+[S 0] Started process, PID 2767693
+[S 0] procMask: 0x0
 [S 0] [0] Adjusting clocks, domain 0, de-ffwd 0
 [S 0] vDSO info initialized
-[S 0] FF thread 0 starting
 [S 0] Started contention simulation thread 0
-[S 0] FF control Thread TID 3054767
 [S 0] Started scheduler watchdog thread
+[S 0] FF thread 0 starting
+[S 0] FF control Thread TID 2767801
 PARSEC Benchmark Suite Version 2.1
 [HOOKS] PARSEC Hooks Version 1.2
 [HOOKS] Entering ROI
@@ -54,24 +54,27 @@ read 16384 points
 [S 0] Thread 10 starting
 [S 0] Thread 11 starting
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/0] INVALID (202) @ 0x4734d2
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x4734d2 | arg0 0x7fffe29e89d0 arg1 0x0
+[S 0]  [0/0] futex (202) @ 0x4734d2
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x4734d2 | arg0 0x1555403a79d0 arg1 0x0
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/9] INVALID (202) @ 0x4743f2
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x4743f2 | arg0 0x7fffffffc42c arg1 0x80
+[S 0]  [0/11] futex (202) @ 0x4743f2
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x4743f2 | arg0 0x7fffffff707c arg1 0x80
+[S 0] Detected possible stall due to fake leaves (2 current)
+[S 0]  [0/7] futex (202) @ 0x474c6a
+[S 0]  [0/11] futex (202) @ 0x474c6a
 [S 0] Detected possible stall due to fake leaves (1 current)
-[S 0]  [0/11] INVALID (202) @ 0x474c6a
-[S 0] Blacklisting from future fake leaves: [0] INVALID @ 0x474c6a | arg0 0x77df60 arg1 0x80
-[S 0] Max total (aggregate) instructions reached (5000017267)
+[S 0]  [0/11] futex (202) @ 0x474c6a
+[S 0] Blacklisting from future fake leaves: [0] futex @ 0x474c6a | arg0 0x7fffffff7050 arg1 0x80
+[S 0] Max total (aggregate) instructions reached (5000035674)
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
+[S 0] Termination condition met, exiting
 [S 0] Termination condition met, exiting
 [S 0] Dumping termination stats
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
-[S 0] Termination condition met, exiting
 [S 0] Terminating scheduler watchdog thread
-[H] Child 3054762 done
+[H] Child 2767693 done
 [H] All children done, exiting
