@@ -46,6 +46,7 @@
 #include "filter_cache.h"
 #include "galloc.h"
 #include "hash.h"
+#include "hawkeye_repl.h"
 #include "ideal_arrays.h"
 #include "locks.h"
 #include "log.h"
@@ -174,6 +175,8 @@ BaseCache* BuildCacheBank(Config& config, const string& prefix, g_string& name, 
         rp = new SRRIPReplPolicy(numLines, rpvMax);
     } else if (replType == "SHIP") {
         rp = new SHiPReplPolicy(numLines);
+    } else if (replType == "Hawkeye") {
+        rp = new HawkeyeReplPolicy(numLines, ways);
     } else if (replType == "WayPart" || replType == "Vantage" || replType == "IdealLRUPart") {
         if (replType == "WayPart" && arrayType != "SetAssoc") panic("WayPart replacement requires SetAssoc array");
 
