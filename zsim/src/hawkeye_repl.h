@@ -218,7 +218,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
             } 
         }
         void replaced(uint32_t id) {
-            array[id] = cache_averse + 2;
+            array[id] = cache_averse + 1;
         }
 
         //find a victim, uses RRIP
