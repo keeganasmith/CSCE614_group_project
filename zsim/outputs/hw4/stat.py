@@ -72,7 +72,7 @@ def get_stat(policy, benchmark):
             "Cycles": total_cycles
             }
 
-policies = ["LFU", "LRU", "SHIP"]
+policies = ["LFU", "LRU", "SHIP", "Hawkeye"]
 
 PARSEC_benchmarks = ["blackscholes_8c_simlarge", "bodytrack_8c_simlarge", "canneal_8c_simlarge", "fluidanimate_8c_simlarge", "streamcluster_8c_simlarge", "swaptions_8c_simlarge", "x264_8c_simlarge"]
 benchmark_stat_mapping = {}

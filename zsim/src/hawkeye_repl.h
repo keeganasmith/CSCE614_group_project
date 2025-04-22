@@ -107,7 +107,7 @@ class optgen {
             // Check if occupancy between prev and curr would exceed associativity
             int32_t idx = wrap_index(prev_idx + 1);
             while (idx != curr_idx) {
-                if (occ[idx] >= (int)(cache_size / set_count))
+                if (occ[idx] >= (size_t)(cache_size / set_count))
                     return false; // Would have been a miss
                 idx = wrap_index(idx + 1);
             }
