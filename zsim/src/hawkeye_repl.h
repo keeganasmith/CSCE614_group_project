@@ -34,8 +34,8 @@ class optgen {
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 64;
     
-        // Per-set counters to track when to advance time-quantum
-        vector<uint32_t> access_count;
+        // global counter to track when to advance time-quantum
+        uint32_t access_count;
         // Flags for which sets are sampled
         vector<bool> is_sampled;
     
@@ -46,7 +46,11 @@ class optgen {
     
         // Wrap an index in the circular buffer
         inline int32_t wrap_index(int32_t idx) const {
-            return (idx + vector_size) % vector_size;
+            int result =  idx % vector_size;
+            if(result < 0){
+                result += vector_size;
+            }
+            return result;
         }
     
     public:
@@ -123,19 +127,67 @@ class optgen {
         }
     
         // Record a cache access for OPT simulation
-        void cache_access(uint32_t address, uint32_t set) {
-            // Set Dueling: only process sampled sets
-            if (!is_sampled[set])
-                return;
+//         void cache_access(uint32_t address, uint32_t set) {
+//             // Set Dueling: only process sampled sets
+//             if (!is_sampled[set])
+//                 return;
     
-            // Granularity: advance history only every TIME_QUANTUM accesses
-            access_count[set]++;
-            if (access_count[set] % TIME_QUANTUM != 0)
-                return;
+//             // Granularity: advance history only every TIME_QUANTUM accesses
+//             access_count[set]++;
+//             if (access_count[set] % TIME_QUANTUM != 0)
+//                 return;
     
-            hist_idx = wrap_index(hist_idx + 1);                // move time pointer
-            occupancy_vector[set][hist_idx] = 0;                // reset occupancy
-            history[set][hist_idx] = address;                   // record address
+//             hist_idx = wrap_index(hist_idx + 1);                // move time pointer
+//             occupancy_vector[set][hist_idx] = 0;                // reset occupancy
+//             history[set][hist_idx] = address;                   // record address
+//         }
+        void cache_access(uint32_t address, uint32_t set){
+            if(!is_sampled[set]){
+                return;
+            }
+            if(access_count % TIME_QUANTUM == 0){
+                hist_idx = wrap_index(hist_idx+1);
+            }
+            access_count++;
+            occupancy_vector[set][hist_idx] = 0;
+            history[set][hist_idx] = address;
+            int i = wrap_index(hist_idx - 1);
+            int last_accessed_index = -1;
+            while(i != hist_idx){
+                if(history[set][i] == address){
+                    break;
+                }
+                i = wrap_index(i - 1);
+            }
+            if(i == hist_idx){ //means first access, so don't modify occupancy
+                return;
+            }
+            /*If X is not a first-time load, OPTgen checks to see if
+            every element corresponding to the usage interval is
+            less than the cache capacity: If so, then OPT would
+            have placed X in the cache, so the shaded portions of
+            the occupancy vector are incremented; if not, then X
+            would have been a cache miss, so the occupancy vector
+            is not modified.*/
+            size_t lines_per_set = (size_t) cache_size / set_count;
+            
+            //so first we check if any elements have #overlapping liveness intervals >= capacity -> cache miss
+            //recall occupancy[set][idx] = #overlapping liveness intervals at idx
+            //in theory occupancy_vector[set][idx] should never exceed lines per set, but we check just in case.
+            int index = i;
+            while(index != hist_idx){
+                if(occupancy_vector[set][index] >= lines_per_set){
+                    return; //no further action needed, cache miss
+                }
+                index = wrap_index(index + 1); 
+            }
+
+            //cache hit so we need to update all values in usage interval (i -> hist_idx)
+            while(i != hist_idx){
+                occupancy_vector[set][i]++;
+                i = wrap_index(i + 1);
+            }
+            
         }
 };
     
@@ -190,6 +242,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         //Used for hawkeye
         optgen Opt_Gen;
         hawkeye_predictor predictor;
+        uint64_t SET_MASK = (1ull<<SET_BITS) - 1;
 
     public:
         // add member methods here, refer to repl_policies.h
@@ -199,21 +252,29 @@ class HawkeyeReplPolicy : public ReplPolicy {
             for(uint32_t i = 0; i < numLines; i++) {
                 array[i] = cache_averse;
             }
+
+            size_t set_count = _numLines / _numWays;
+            unsigned SET_BITS = __builtin_ctz(SET_COUNT);
+            SET_MASK = SET_COUNT - 1;
+            
         }
 
         ~HawkeyeReplPolicy() {
             gm_free(array);
         }
-
+        uint32_t get_set_index(Address lineAddr){
+            return uint32_t(lineAddr & SET_MASK);
+        }
         void update(uint32_t id, const MemReq* req) {
             //check to make sure that srcId reall stands for what cache way 
-            assert(req->srcId < numWays);
-            bool prediction = Opt_Gen.is_in_cache(req->lineAddr, req->srcId);
+            uint32_t set_index = get_set_index(req->lineAddr)
+            assert(set_index < numWays);
+            bool prediction = Opt_Gen.is_in_cache(req->lineAddr, set_index);
             predictor.train_instruction(req->pc, prediction);
             if (array[id] == cache_averse + 1) {//cache miss
                 array[id] -= 2;
             } else {
-                Opt_Gen.cache_access(req->lineAddr, req->srcId);
+                Opt_Gen.cache_access(req->lineAddr, set_index);
                 array[id] = cache_friendly;
             } 
         }
