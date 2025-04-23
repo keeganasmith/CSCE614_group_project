@@ -41,13 +41,14 @@ class HawkeyeReplPolicy : public ReplPolicy {
         vector<optgen> opt_sims;
         hawkeye_predictor predictor;
 
-        inline int32_t wrap_index(int32_t idx) const {
-            return idx % (numWays * 8);
+        inline uint32_t wrap_index(uint32_t idx) const {
+            return idx % (hist_size);
         }
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numSets, uint32_t _numWays, uint32_t _lineSize) 
             : numSets(_numSets), numWays(_numWays), predictor() {
+            std::cout << "Hawkeye initilized\n";
             //set up the rrip portion
             array = gm_calloc<int8_t>(numSets * numWays);
             for(uint32_t i = 0; i < numSets * numWays; i++) {
@@ -67,8 +68,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
             lineSize = static_cast<uint32_t>(std::log2(_lineSize));
             setSize = static_cast<uint32_t>(std::log2(numSets));
 
-            //std::cout << "line size: " << _lineSize << " in bits: " << lineSize << std::endl;
-            //std::cout << "Set size:  " << numSets << " in bits: " << setSize << std::endl;
+            std::cout << "line size: " << _lineSize << " in bits: " << lineSize << std::endl;
+            std::cout << "Set size:  " << numSets << " in bits: " << setSize << std::endl;
 
         }
 
@@ -89,6 +90,9 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
             //predict the new cache value to be in the RRIP
             bool new_cache_val = predictor.predict_instruction(req->pc);
+            //if(array[id] == cache_averse + 1) {
+                //detrain that id/evicted line
+            //}
             array[id] = new_cache_val ? cache_friendly : cache_averse;
 
             //Train the predictor with reuse info, if we saw this line before
@@ -97,9 +101,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 bool prediction = opt_sims[set].is_in_cache(prev_idx, hist_idx_arr[set]);
                 predictor.train_instruction(req->pc, prediction);
             }
-
+            //iterate the index for the set
             hist_idx_arr[set] = wrap_index(hist_idx_arr[set] + 1);
-
         }
         void replaced(uint32_t id) {
             array[id] = cache_averse + 1;
@@ -139,12 +142,12 @@ class HawkeyeReplPolicy : public ReplPolicy {
             //filter the rest out
             uint32_t mask = (1U << setSize) - 1; // Create a mask with setSize number of 1's
             setIdx = setIdx & mask;
-            assert(setIdx < numSets);
+            assert(setIdx < numSets); 
             return setIdx;
         }
         //looks for the last use of the address in the history of that set
-        uint32_t last_used_addr(uint32_t address, uint32_t set) { 
-            // Scan history buffer for last two accesses to this address
+        int32_t last_used_addr(uint32_t address, uint32_t set) { 
+            // Scan history buffer for the last access of the address
             for (uint32_t i = 1; i <= hist_size; ++i) {
                 uint32_t idx = wrap_index(hist_idx_arr[set] - i);
                 if (history[set][idx] == address) { 
