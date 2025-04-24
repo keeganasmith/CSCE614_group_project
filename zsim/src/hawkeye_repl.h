@@ -24,9 +24,8 @@ using std::vector;
 
 class optgen {
     private:
-        uint64_t cache_size;          // total capacity in lines
+        uint64_t num_lines;          // total capacity in lines
         uint64_t set_count;           // number of sets in the cache
-        uint32_t hist_idx;            // global time pointer into history/occupancy vectors
         uint32_t vector_size;         // length of history/occupancy per sampled set
         uint32_t num_ways; //associativity of the cache
         // Granularity parameter: number of accesses per time-quantum
@@ -34,8 +33,8 @@ class optgen {
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 64;
     
-        // global counter to track when to advance time-quantum
-        uint32_t access_count;
+        //counter for each set to track when to advance time-quantum
+        vector<uint32_t> access_count;
         // Flags for which sets are sampled
         vector<bool> is_sampled;
     
@@ -54,18 +53,19 @@ class optgen {
         }
     
     public:
-        explicit optgen(uint64_t _cache_size, uint64_t _set_count, uint32_t _numWays)
-            : cache_size(_cache_size), set_count(_set_count), hist_idx(0), num_ways(_numWays)
+        explicit optgen(uint64_t _num_lines, uint32_t _numWays)
+            : num_lines(_num_lines), num_ways(_numWays)
         {
             // Compute reduced vector size using time quantization
             // Original vector_size = associativity * 8
             // With granularity, divide by TIME_QUANTUM
-            vector_size = (cache_size / set_count * 8) / TIME_QUANTUM;
+            //num_lines / set_count = num_ways
+            vector_size = (num_ways * 8) / TIME_QUANTUM;
     
             // Initialize data structures
             history.resize(set_count, vector<uint32_t>(vector_size, 0));
             occupancy_vector.resize(set_count, vector<uint32_t>(vector_size, 0));
-            access_count = 0;
+            access_count.resize(set_count, 0)
             is_sampled.resize(set_count, false);
     
             // Set Dueling: randomly select SAMPLE_SETS sets for OPT simulation
@@ -89,9 +89,10 @@ class optgen {
             if(!is_sampled[set]){
                 return false;
             }
-            access_count++;
-            if(access_count % TIME_QUANTUM == 0){
-                hist_idx = wrap_index(hist_idx+1);
+            access_count[set]++;
+            unsigned int hist_idx = wrap_index(access_count[set] / TIME_QUANTUM);  
+                 
+            if(access_count[set] % TIME_QUANTUM == 0){
                 occupancy_vector[set][hist_idx] = 0;
                 history[set][hist_idx] = address;
             }
