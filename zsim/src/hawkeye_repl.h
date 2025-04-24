@@ -163,7 +163,7 @@ class optgen {
     
 /*    Hawkeye Predictor
 -- look up table to check if the cache insertion s friendly or averse*/
-#define map_size 8192  // 8000 entries, each 3 bits wide
+#define map_size 8192  // 8k entries, each 3 bits wide
 
 class hawkeye_predictor {
 private:
@@ -215,6 +215,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
         hawkeye_predictor predictor;
         uint64_t SET_MASK; 
         bool replace_prediction = false;
+        uint32_t smallest_set = INT32_MAX;
+        uint32_t largest_set = INT32_MIN;
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
@@ -233,6 +235,16 @@ class HawkeyeReplPolicy : public ReplPolicy {
             gm_free(array);
         }
         uint32_t get_set_index(Address lineAddr){
+            uint32_t result = lineAddr & SET_MASK;
+            if(result < smallest_set){
+                smallest_set = result;
+                std::cout << "smallest set: " << smallest_set << "\n";
+            }
+            if(result > largest_set){
+                largest_set = result;
+                std::cout << "largest set: " << largest_set << "\n";
+            }
+            
             return uint32_t(lineAddr & SET_MASK);
         }
 
