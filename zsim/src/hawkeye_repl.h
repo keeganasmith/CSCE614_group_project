@@ -62,7 +62,9 @@ class optgen {
             // With granularity, divide by TIME_QUANTUM
             //num_lines / set_count = num_ways
             vector_size = (num_ways * 8) / TIME_QUANTUM;
+            std::cout << "vector size: " << vector_size << "\n";
             set_count = num_lines / num_ways;
+            std::cout << "set count: " << set_count << "\n";
             // Initialize data structures
             history = new uint32_t[set_count * vector_size];
             occupancy_vector = new uint32_t[set_count * vector_size];
