@@ -111,7 +111,11 @@ class optgen {
 /*    Hawkeye Predictor
 -- look up table to check if the cache insertion s friendly or averse
 higher values are more friendly*/
+<<<<<<< Updated upstream
 #define MAP_SIZE 8192  // 8000 entries, each 3 bits wide
+=======
+#define MAP_SIZE 16384  // 8000 entries, each 3 bits wide
+>>>>>>> Stashed changes
 
 class hawkeye_predictor {
 private:

@@ -27,12 +27,20 @@ class HawkeyeReplPolicy : public ReplPolicy {
         int64_t* prevPC;    //tracks the last pc to access the respective rrip
         bool* wasReplaced;  //tracks if the id is to be replacedd
 
+<<<<<<< Updated upstream
+=======
+        // new: per‐line recency tracking, for LRU portion
+        uint64_t* lastAccess;
+        uint64_t  accessCounter;
+
+>>>>>>> Stashed changes
         vector<optgen> opt_sims;               //include an optgen fro each set
         hawkeye_predictor predictor;
 
 
     public:
         explicit HawkeyeReplPolicy(uint32_t _numSets, uint32_t _numWays, uint32_t _lineSize) 
+<<<<<<< Updated upstream
             : numSets(_numSets), numWays(_numWays), predictor() {
             //set up the rrip portion
             array = gm_calloc<int8_t>(numSets * numWays);
@@ -40,6 +48,17 @@ class HawkeyeReplPolicy : public ReplPolicy {
             for(uint32_t i = 0; i < (uint32_t)numSets * numWays; i++) {
                 array[i] = CACHE_AVERSE;
                 wasReplaced[i] = false;
+=======
+            : numSets(_numSets), numWays(_numWays), accessCounter(0), predictor() {
+            //set up the rrip portion
+            array = gm_calloc<int8_t>(numSets * numWays);
+            wasReplaced = gm_calloc<bool>(numSets * numWays);
+            lastAccess  = gm_calloc<uint64_t>(numSets * numWays);
+            for(uint32_t i = 0; i < (uint32_t)numSets * numWays; i++) {
+                array[i] = CACHE_AVERSE;
+                wasReplaced[i] = false;
+                lastAccess[i]  = 0;
+>>>>>>> Stashed changes
             }
 
 
@@ -58,6 +77,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
             gm_free(prevPC);
             gm_free(array);
             gm_free(wasReplaced);
+<<<<<<< Updated upstream
             /*for(uint32_t i = 0; i < numSets; i++) {
                 opt_sims[i].~optgen();
             }
@@ -69,17 +89,31 @@ class HawkeyeReplPolicy : public ReplPolicy {
             //need the set to know which optgen to access
             uint32_t set = calculate_set_idx(req->lineAddr);
             assert(set < numSets);
+=======
+            gm_free(lastAccess);
+        }
+
+        void update(uint32_t id, const MemReq* req) {
+            //need the set to know which optgen to access
+            uint32_t set = calculate_set_idx(req->lineAddr);
+>>>>>>> Stashed changes
 
             //log the cache interaction, update the optgen
             int32_t response = opt_sims[set].cache_access(req);
             //do not train if this is the first time seeing this 
             if(response != -1) { 
+<<<<<<< Updated upstream
                 uint64_t last = opt_sims[set].find_last_pc(req->lineAddr);
                 predictor.train_instruction(last, response);
+=======
+                uint64_t lastPC = opt_sims[set].find_last_pc(req->lineAddr);
+                predictor.train_instruction(lastPC, response);
+>>>>>>> Stashed changes
             }
             //predict the new cache value to be in the RRIP
             bool pred_friendly = predictor.predict_instruction(req->pc);
             
+<<<<<<< Updated upstream
             if(response == 1) {
                 array[id] = CACHE_FRIENDLY;
             }
@@ -133,10 +167,59 @@ class HawkeyeReplPolicy : public ReplPolicy {
             }
             panic("error no rank found\n");
             return -1;
+=======
+            if(wasReplaced[id]) {//if cache miss 
+                if(array[id] < CACHE_AVERSE) //if the cache line to be replaced was friendly
+                    predictor.train_instruction(prevPC[id], 0);//detrain the entry
+
+                if(pred_friendly) {//friendly, age all lines
+                    uint32_t base = set * numWays;
+                    for (uint32_t way = 0; way < numWays; ++way) {
+                        uint32_t idx = base + way;
+                        if (array[idx] < CACHE_AVERSE - 1)
+                            array[idx]++;
+                    }
+                }
+            }
+            array[id] = pred_friendly ? CACHE_FRIENDLY : CACHE_AVERSE; //set the RRIP value
+            prevPC[id] = req->pc;
+            wasReplaced[id] = false;
+
+            lastAccess[id] = accessCounter++;
+        }
+
+        void replaced(uint32_t id) {
+            wasReplaced[id] = true;
+        }
+
+        template <typename C>
+        inline uint32_t rank(const MemReq* req, C cands) {
+            // 1) Evict any cache‐averse immediately
+            for (auto it = cands.begin(); it != cands.end(); it.inc()) {
+                if (array[*it] == CACHE_AVERSE)
+                    return *it;
+            }
+
+            // 2) Otherwise, pick the true LRU among the candidates
+            uint32_t victim   = *cands.begin();
+            uint64_t oldestTS = lastAccess[victim];
+            for (auto it = cands.begin(); it != cands.end(); it.inc()) {
+                uint32_t idx = *it;
+                if (lastAccess[idx] < oldestTS) {
+                    oldestTS = lastAccess[idx];
+                    victim   = idx;
+                }
+            }
+            return victim;
+>>>>>>> Stashed changes
         }
         DECL_RANK_BINDINGS;
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     private:
         uint32_t calculate_set_idx(uint32_t lineAddr) {
             uint32_t setIdx = lineAddr >> blockOffsetBits;
