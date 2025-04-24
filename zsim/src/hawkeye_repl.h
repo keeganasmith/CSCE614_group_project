@@ -62,7 +62,7 @@ class optgen {
             // With granularity, divide by TIME_QUANTUM
             //num_lines / set_count = num_ways
             vector_size = (num_ways * 8) / TIME_QUANTUM;
-    
+
             // Initialize data structures
             history.resize(set_count, vector<uint32_t>(vector_size, 0));
             occupancy_vector.resize(set_count, vector<uint32_t>(vector_size, 0));
@@ -80,6 +80,7 @@ class optgen {
                     sampled++;
                 }
             }
+            std::cout << "got to end of optgen constructor\n";
             // Non-sampled sets will be skipped in simulation
         }
         bool sampled(uint32_t set){
