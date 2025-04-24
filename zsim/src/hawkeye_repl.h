@@ -70,6 +70,7 @@ class optgen {
             occupancy_vector = new uint32_t[set_count * vector_size];
             access_count = new uint32_t[set_count];
             is_sampled = new bool[set_count];
+            std::cout << "finished allocating data structures\n";
             for(unsigned int i = 0; i < set_count; i++){
                 access_count[i] = 0;
                 is_sampled[i] = false;
@@ -81,6 +82,7 @@ class optgen {
             std::mt19937 rng(0);  // fixed seed for reproducibility
             std::uniform_int_distribution<uint32_t> dist(0, set_count - 1);
             uint32_t sampled = 0;
+            std::cout << "got to sample loop\n";
             while (sampled < SAMPLE_SETS) {
                 uint32_t s = dist(rng);
                 if (!is_sampled[s]) {
