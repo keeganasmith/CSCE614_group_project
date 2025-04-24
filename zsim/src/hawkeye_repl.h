@@ -217,9 +217,11 @@ class HawkeyeReplPolicy : public ReplPolicy {
         bool replace_prediction = false;
         uint32_t smallest_set = INT32_MAX;
         uint32_t largest_set = 0;
+        uint32_t blockOffsetBits;
+        uint32_t indexSetBits;
     public:
         // add member methods here, refer to repl_policies.h
-        explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
+        explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays, uint32_t _lineSize) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
             //set up the rrip portion
             std::cout << "got to constructor\n";
             array = gm_calloc<int8_t>(numLines);
@@ -229,23 +231,18 @@ class HawkeyeReplPolicy : public ReplPolicy {
             size_t set_count = _numLines / _numWays;
             SET_MASK = set_count - 1;
             std::cout << "finished constructor\n";
+            blockOffsetBits = static_cast<uint32_t>(std::log2(_lineSize));
+            indexSetBits = static_cast<uint32_t>(std::log2(set_count));
         }
 
         ~HawkeyeReplPolicy() {
             gm_free(array);
         }
         uint32_t get_set_index(Address lineAddr){
-            uint32_t result = lineAddr & SET_MASK;
-            if(result < smallest_set){
-                smallest_set = result;
-                std::cout << "smallest set: " << smallest_set << "\n";
-            }
-            if(result > largest_set){
-                largest_set = result;
-                std::cout << "largest set: " << largest_set << "\n";
-            }
-            
-            return uint32_t(lineAddr & SET_MASK);
+            uint32_t setIdx = lineAddr >> blockOffsetBits;
+            uint32_t mask = (1u << indexSetBits) - 1;
+            setIdx = setIdx & mask; 
+            return setIdx;
         }
 
         //recall: update is called on cache hit

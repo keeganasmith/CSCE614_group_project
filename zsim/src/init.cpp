@@ -176,7 +176,7 @@ BaseCache* BuildCacheBank(Config& config, const string& prefix, g_string& name, 
     } else if (replType == "SHIP") {
         rp = new SHiPReplPolicy(numLines);
     } else if (replType == "Hawkeye") {
-        rp = new HawkeyeReplPolicy(numLines, ways);
+        rp = new HawkeyeReplPolicy(numLines, ways, lineSize);
     } else if (replType == "WayPart" || replType == "Vantage" || replType == "IdealLRUPart") {
         if (replType == "WayPart" && arrayType != "SetAssoc") panic("WayPart replacement requires SetAssoc array");
 
