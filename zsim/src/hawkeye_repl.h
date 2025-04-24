@@ -67,8 +67,8 @@ class optgen {
             history = new uint32_t[set_count * vector_size];
             occupancy_vector = new uint32_t[set_count * vector_size];
             access_count = new uint32_t[set_count];
-            is_sampled = new uint32_t[set_count];
-            for(int i = 0; i < set_count; i++){
+            is_sampled = new bool[set_count];
+            for(unsigned int i = 0; i < set_count; i++){
                 access_count[i] = 0;
                 is_sampled[i] = false;
             }
@@ -83,7 +83,7 @@ class optgen {
                 uint32_t s = dist(rng);
                 if (!is_sampled[s]) {
                     is_sampled[s] = true;
-                    for(int i =0; i < vector_size; i++){
+                    for(unsigned int i =0; i < vector_size; i++){
                         access_count[s * vector_size + i] = 0;
                         occupancy_vector[s * vector_size + i] = 0;
                     }
