@@ -239,7 +239,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
             gm_free(array);
         }
         uint64_t get_set_index(Address lineAddr){
-            return (uint64_t)((addr >> blockOffsetBits) & setMask);
+            return (uint64_t)((lineAddr >> blockOffsetBits) & setMask);
         }
         //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
