@@ -190,7 +190,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         //Used for hawkeye
         optgen Opt_Gen;
         hawkeye_predictor predictor;
-        uint64_t SET_MASK = (1ull<<SET_BITS) - 1;
+        uint64_t SET_MASK; 
         bool replace_prediction = false;
     public:
         // add member methods here, refer to repl_policies.h
@@ -200,9 +200,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
             for(uint32_t i = 0; i < numLines; i++) {
                 array[i] = cache_averse;
             }
-
             size_t set_count = _numLines / _numWays;
-            unsigned SET_BITS = __builtin_ctz(SET_COUNT);
             SET_MASK = set_count - 1;
             
         }
