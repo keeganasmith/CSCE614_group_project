@@ -34,14 +34,14 @@ class optgen {
         static constexpr uint32_t SAMPLE_SETS = 64;
     
         //counter for each set to track when to advance time-quantum
-        vector<uint32_t> access_count;
+        uint32_t* access_count;
         // Flags for which sets are sampled
-        vector<bool> is_sampled;
+        bool* is_sampled;
     
         // For each set, maintain a history buffer and occupancy vector
         // We allocate for all sets but only use for sampled ones
-        vector<vector<uint32_t>> history;
-        vector<vector<uint32_t>> occupancy_vector;
+        uint32_t* history;
+        uint32_t* occupancy_vector;
     
         // Wrap an index in the circular buffer
         inline int32_t wrap_index(int32_t idx) const {
@@ -62,12 +62,18 @@ class optgen {
             // With granularity, divide by TIME_QUANTUM
             //num_lines / set_count = num_ways
             vector_size = (num_ways * 8) / TIME_QUANTUM;
-
+            set_count = num_lines / num_ways;
             // Initialize data structures
-            history.resize(set_count, vector<uint32_t>(vector_size, 0));
-            occupancy_vector.resize(set_count, vector<uint32_t>(vector_size, 0));
-            access_count.resize(set_count, 0);
-            is_sampled.resize(set_count, false);
+            history = new uint32_t[set_count * vector_size];
+            occupancy_vector = new uint32_t[set_count * vector_size];
+            access_count = new uint32_t[set_count];
+            is_sampled = new uint32_t[set_count];
+            for(int i = 0; i < set_count; i++){
+                access_count[i] = 0;
+                is_sampled[i] = false;
+            }
+            
+            
     
             // Set Dueling: randomly select SAMPLE_SETS sets for OPT simulation
             std::mt19937 rng(0);  // fixed seed for reproducibility
@@ -77,11 +83,21 @@ class optgen {
                 uint32_t s = dist(rng);
                 if (!is_sampled[s]) {
                     is_sampled[s] = true;
+                    for(int i =0; i < vector_size; i++){
+                        access_count[s * vector_size + i] = 0;
+                        occupancy_vector[s * vector_size + i] = 0;
+                    }
                     sampled++;
                 }
             }
             std::cout << "got to end of optgen constructor\n";
             // Non-sampled sets will be skipped in simulation
+        }
+        ~optgen(){
+            delete[] is_sampled;
+            delete[] access_count;
+            delete[] occupancy_vector;
+            delete[] history;
         }
         bool sampled(uint32_t set){
             return is_sampled[set];
@@ -93,15 +109,15 @@ class optgen {
             }
             access_count[set]++;
             unsigned int hist_idx = wrap_index(access_count[set] / TIME_QUANTUM);  
-
+            unsigned int set_offset = set * vector_size;
             if(access_count[set] % TIME_QUANTUM == 0){
-                occupancy_vector[set][hist_idx] = 0;
-                history[set][hist_idx] = address;
+                occupancy_vector[set_offset + hist_idx] = 0;
+                history[set_offset + hist_idx] = address;
             }
             
             unsigned int i = wrap_index(hist_idx - 1);
             while(i != hist_idx){
-                if(history[set][i] == address){
+                if(history[set_offset + i] == address){
                     break;
                 }
                 i = wrap_index(i - 1);
@@ -124,7 +140,7 @@ class optgen {
             //in theory occupancy_vector[set][idx] should never exceed lines per set, but we check just in case.
             unsigned int index = i;
             while(index != hist_idx){
-                if(occupancy_vector[set][index] >= lines_per_set){
+                if(occupancy_vector[set_offset + index] >= lines_per_set){
                     return false; //no further action needed, cache miss
                 }
                 index = wrap_index(index + 1); 
@@ -132,7 +148,7 @@ class optgen {
 
             //cache hit so we need to update all values in usage interval [i -> hist_idx)
             while(i != hist_idx){
-                occupancy_vector[set][i]++;
+                occupancy_vector[set_offset + i]++;
                 i = wrap_index(i + 1);
             }
             return true;
