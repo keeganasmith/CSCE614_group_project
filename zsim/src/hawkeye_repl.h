@@ -196,13 +196,14 @@ class HawkeyeReplPolicy : public ReplPolicy {
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
             //set up the rrip portion
+            std::cout << "got to constructor\n";
             array = gm_calloc<int8_t>(numLines);
             for(uint32_t i = 0; i < numLines; i++) {
                 array[i] = cache_averse;
             }
             size_t set_count = _numLines / _numWays;
             SET_MASK = set_count - 1;
-            
+            std::cout << "finished constructor\n";
         }
 
         ~HawkeyeReplPolicy() {
