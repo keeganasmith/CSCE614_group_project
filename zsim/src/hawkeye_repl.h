@@ -28,7 +28,7 @@ class optgen {
         uint64_t set_count;           // number of sets in the cache
         uint32_t hist_idx;            // global time pointer into history/occupancy vectors
         uint32_t vector_size;         // length of history/occupancy per sampled set
-    
+        uint32_t num_ways; //associativity of the cache
         // Granularity parameter: number of accesses per time-quantum
         static constexpr uint32_t TIME_QUANTUM = 4;
         // Number of sets to sample for set dueling
@@ -54,14 +54,13 @@ class optgen {
         }
     
     public:
-        explicit optgen(uint64_t _cache_size, uint64_t _set_count)
-            : cache_size(_cache_size), set_count(_set_count), hist_idx(0)
+        explicit optgen(uint64_t _cache_size, uint64_t _set_count, uint32_t _numWays)
+            : cache_size(_cache_size), set_count(_set_count), hist_idx(0), num_ways(_numWays)
         {
             // Compute reduced vector size using time quantization
             // Original vector_size = associativity * 8
             // With granularity, divide by TIME_QUANTUM
             vector_size = (cache_size / set_count * 8) / TIME_QUANTUM;
-            if (vector_size == 0) vector_size = 1;
     
             // Initialize data structures
             history.resize(set_count, vector<uint32_t>(vector_size, 0));
@@ -82,75 +81,21 @@ class optgen {
             }
             // Non-sampled sets will be skipped in simulation
         }
-    
-        // Check if address would have been in cache under OPT for this set
-        bool is_in_cache(uint32_t address, uint32_t set) {
-            // Set Dueling: only process sampled sets
-            if (!is_sampled[set])
-                return false;
-    
-            int32_t prev_idx = -1, curr_idx = -1;
-            auto& hist = history[set];
-            auto& occ  = occupancy_vector[set];
-    
-            // Scan history buffer for last two accesses to this address
-            for (uint32_t i = 1; i <= vector_size; ++i) {
-                uint32_t idx = wrap_index(hist_idx - i);
-                if (hist[idx] == address) {
-                    if (prev_idx == -1)
-                        prev_idx = idx;
-                    else if (curr_idx == -1) {
-                        curr_idx = idx;
-                        break;
-                    }
-                }
-            }
-            if (prev_idx == -1 || curr_idx == -1)
-                return false; // Not enough history
-    
-            // Check if occupancy between prev and curr would exceed associativity
-            int32_t idx = wrap_index(prev_idx + 1);
-            while (idx != curr_idx) {
-                if (occ[idx] >= (size_t)(cache_size / set_count))
-                    return false; // Would have been a miss
-                idx = wrap_index(idx + 1);
-            }
-    
-            // Update occupancy between prev and current
-            idx = wrap_index(prev_idx + 1);
-            while (idx != curr_idx) {
-                occ[idx]++;
-                idx = wrap_index(idx + 1);
-            }
-    
-            return true;
+        bool sampled(uint32_t set){
+            return is_sampled[set];
         }
-    
-        // Record a cache access for OPT simulation
-//         void cache_access(uint32_t address, uint32_t set) {
-//             // Set Dueling: only process sampled sets
-//             if (!is_sampled[set])
-//                 return;
-    
-//             // Granularity: advance history only every TIME_QUANTUM accesses
-//             access_count[set]++;
-//             if (access_count[set] % TIME_QUANTUM != 0)
-//                 return;
-    
-//             hist_idx = wrap_index(hist_idx + 1);                // move time pointer
-//             occupancy_vector[set][hist_idx] = 0;                // reset occupancy
-//             history[set][hist_idx] = address;                   // record address
-//         }
-        void cache_access(uint32_t address, uint32_t set){
+        
+        bool cache_access(uint32_t address, uint32_t set){ //returns true if cache hit, false otherwise
             if(!is_sampled[set]){
-                return;
-            }
-            if(access_count % TIME_QUANTUM == 0){
-                hist_idx = wrap_index(hist_idx+1);
+                return false;
             }
             access_count++;
-            occupancy_vector[set][hist_idx] = 0;
-            history[set][hist_idx] = address;
+            if(access_count % TIME_QUANTUM == 0){
+                hist_idx = wrap_index(hist_idx+1);
+                occupancy_vector[set][hist_idx] = 0;
+                history[set][hist_idx] = address;
+            }
+            
             int i = wrap_index(hist_idx - 1);
             int last_accessed_index = -1;
             while(i != hist_idx){
@@ -160,7 +105,7 @@ class optgen {
                 i = wrap_index(i - 1);
             }
             if(i == hist_idx){ //means first access, so don't modify occupancy
-                return;
+                return false;
             }
             /*If X is not a first-time load, OPTgen checks to see if
             every element corresponding to the usage interval is
@@ -169,7 +114,8 @@ class optgen {
             the occupancy vector are incremented; if not, then X
             would have been a cache miss, so the occupancy vector
             is not modified.*/
-            size_t lines_per_set = (size_t) cache_size / set_count;
+
+            size_t lines_per_set = num_ways;
             
             //so first we check if any elements have #overlapping liveness intervals >= capacity -> cache miss
             //recall occupancy[set][idx] = #overlapping liveness intervals at idx
@@ -177,16 +123,17 @@ class optgen {
             int index = i;
             while(index != hist_idx){
                 if(occupancy_vector[set][index] >= lines_per_set){
-                    return; //no further action needed, cache miss
+                    return false; //no further action needed, cache miss
                 }
                 index = wrap_index(index + 1); 
             }
 
-            //cache hit so we need to update all values in usage interval (i -> hist_idx)
+            //cache hit so we need to update all values in usage interval [i -> hist_idx)
             while(i != hist_idx){
                 occupancy_vector[set][i]++;
                 i = wrap_index(i + 1);
             }
+            return true;
             
         }
 };
@@ -216,9 +163,10 @@ public:
     bool predict_instruction(uint32_t PC) {
         uint32_t index = hash_instruction(PC);
         uint8_t value = predictor_map[index] & 0x7;  // extract 3-bit value
-        return (value & 0x4) != 0;  // check if the most significant bit (bit 2) is 1
+        return (value & 0x4) != 0;  // check if the most significant bit (bit 2) is 1, 1 is good
     }
     //trains the hash... 1 for positively train, 0 for negatively trained. takes in the PC
+    //higher is better
     void train_instruction(uint32_t PC, bool taken) {
         uint32_t idx = hash_instruction(PC);
         uint8_t ctr = predictor_map[idx] & 0x7;
@@ -243,7 +191,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         optgen Opt_Gen;
         hawkeye_predictor predictor;
         uint64_t SET_MASK = (1ull<<SET_BITS) - 1;
-
+        bool replace_prediction = false;
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
@@ -255,7 +203,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
             size_t set_count = _numLines / _numWays;
             unsigned SET_BITS = __builtin_ctz(SET_COUNT);
-            SET_MASK = SET_COUNT - 1;
+            SET_MASK = set_count - 1;
             
         }
 
@@ -265,25 +213,48 @@ class HawkeyeReplPolicy : public ReplPolicy {
         uint32_t get_set_index(Address lineAddr){
             return uint32_t(lineAddr & SET_MASK);
         }
+
+        //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
-            //check to make sure that srcId reall stands for what cache way 
             uint32_t set_index = get_set_index(req->lineAddr)
-            assert(set_index < numWays);
-            bool prediction = Opt_Gen.is_in_cache(req->lineAddr, set_index);
-            predictor.train_instruction(req->pc, prediction);
-            if (array[id] == cache_averse + 1) {//cache miss
-                array[id] -= 2;
-            } else {
-                Opt_Gen.cache_access(req->lineAddr, set_index);
-                array[id] = cache_friendly;
-            } 
+            if(Opt_Gen.sampled(set_index)){
+                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
+                predictor.train_instruction(req->pc, opt_hit);
+            }
+            bool prediction = predictor.predict_instruction(req->pc);
+            if(prediction){
+                array[id] = 0;
+            }
+            else{
+                array[id] = cache_averse;
+            }
         }
+
+        //recall: replaced is called when id is inserted into cache after cache miss
         void replaced(uint32_t id) {
-            array[id] = cache_averse + 1;
+            if(replace_prediction){
+                array[id] = 0;
+            }
+            else{
+                array[id] = cache_averse;
+            }
         }
 
         //find a victim, uses RRIP
         template <typename C> inline uint32_t rank(const MemReq* req, C cands) {
+            uint32_t set_index = get_set_index(req->lineAddr)
+            if(Opt_Gen.sampled(set_index)){
+                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
+                predictor.train_instruction(req->pc, opt_hit);
+            }
+            replace_prediction = predictor.predict_instruction(req->pc);
+            if(!replace_prediction){ //means we need to age all lines
+                for(auto ci = cands.begin(); ci != cands.end(); ci.inc()){
+                    if(array[*ci] < cache_averse - 1){
+                        array[*ci]++;
+                    }
+                }
+            }
             //search for a cache adverse candidate
             for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
                 if(array[*ci] == (int8_t)cache_averse) {
@@ -291,22 +262,15 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 }
             }
             //if no cache adverse lines are found... look for the next max one
-            for(uint32_t i = 0; i <= cache_averse; i++) {
-                //search for a max value cache friedly one
-                for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
-                    if(array[*ci] == (int8_t)(cache_averse - 1)) {
-                        return *ci;// Evict first candidate with max RRP
-                    }
-                }
-                //no match found increment all status
-                for (auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
-                    //cache adverse tag can only set by the predictor
-                    if(array[*ci] < (int8_t)(cache_averse-1))
-                        array[*ci]++;
+            uint32_t best_cand = -1;
+            uint8_t largest = 0;
+            for(auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
+                if(array[*ci] > largest){
+                    largest = array[*ci];
+                    best_cand = *ci;
                 }
             }
-            info("error no rank found\n");
-            return -1;
+            return best_cand;
         }
         DECL_RANK_BINDINGS;
 };
