@@ -171,7 +171,7 @@ private:
 
     uint32_t hash_instruction(uint32_t PC) const {
         // A simple hash function (can be improved depending on use case)
-        return PC % (map_size - 1);
+        return PC % map_size;
     }
 
 public:
@@ -185,20 +185,20 @@ public:
 
     bool predict_instruction(uint32_t PC) {
         uint32_t index = hash_instruction(PC);
-        uint8_t value = predictor_map[index] & 0x7;  // extract 3-bit value
-        return (value & 0x4) != 0;  // check if the most significant bit (bit 2) is 1, 1 is good
+        uint8_t value = predictor_map[index];
+        return value >= 4;
     }
     //trains the hash... 1 for positively train, 0 for negatively trained. takes in the PC
     //higher is better
     void train_instruction(uint32_t PC, bool taken) {
         uint32_t idx = hash_instruction(PC);
-        uint8_t ctr = predictor_map[idx] & 0x7;
+        uint8_t ctr = predictor_map[idx];
         if (taken) { 
             if (ctr < 7) ctr++;
         } else {
             if (ctr > 0) ctr--;
         }
-        predictor_map[idx] = (predictor_map[idx] & ~0x7) | ctr;
+        predictor_map[idx] = ctr;
     }
 };
 
