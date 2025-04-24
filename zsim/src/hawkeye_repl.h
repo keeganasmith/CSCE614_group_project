@@ -213,7 +213,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         //Used for hawkeye
         optgen Opt_Gen;
         hawkeye_predictor predictor;
-        uint64_t SET_MASK; 
+        uint64_t setMask; 
         bool replace_prediction = false;
         uint32_t smallest_set = INT32_MAX;
         uint32_t largest_set = 0;
@@ -229,27 +229,24 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 array[i] = cache_averse;
             }
             size_t set_count = _numLines / _numWays;
-            SET_MASK = set_count - 1;
             std::cout << "finished constructor\n";
-            blockOffsetBits = static_cast<uint32_t>(std::log2(_lineSize));
-            indexSetBits = static_cast<uint32_t>(std::log2(set_count));
+            blockOffsetBits = __builtin_ctz(_lineSize);
+            indexSetBits = __builtin_ctz(set_count);
+            setMask = (1u << indexSetBits) - 1;
         }
 
         ~HawkeyeReplPolicy() {
             gm_free(array);
         }
-        uint32_t get_set_index(Address lineAddr){
-            uint32_t setIdx = lineAddr >> blockOffsetBits;
-            uint32_t mask = (1u << indexSetBits) - 1;
-            setIdx = setIdx & mask; 
-            return setIdx;
+        uint64_t get_set_index(Address lineAddr){
+            return (uint64_t)((addr >> blockOffsetBits) & setMask);
         }
-
         //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
             uint32_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
-                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
+                uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
+                bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
             bool prediction = predictor.predict_instruction(req->pc);
@@ -273,9 +270,10 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
         //find a victim, uses RRIP
         template <typename C> inline uint32_t rank(const MemReq* req, C cands) {
-            uint32_t set_index = get_set_index(req->lineAddr);
+            uint64_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
-                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
+                uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
+                bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
             replace_prediction = predictor.predict_instruction(req->pc);
