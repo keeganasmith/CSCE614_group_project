@@ -65,7 +65,7 @@ class optgen {
             // Initialize data structures
             history.resize(set_count, vector<uint32_t>(vector_size, 0));
             occupancy_vector.resize(set_count, vector<uint32_t>(vector_size, 0));
-            access_count.resize(set_count, 0)
+            access_count.resize(set_count, 0);
             is_sampled.resize(set_count, false);
     
             // Set Dueling: randomly select SAMPLE_SETS sets for OPT simulation
@@ -91,7 +91,7 @@ class optgen {
             }
             access_count[set]++;
             unsigned int hist_idx = wrap_index(access_count[set] / TIME_QUANTUM);  
-                 
+
             if(access_count[set] % TIME_QUANTUM == 0){
                 occupancy_vector[set][hist_idx] = 0;
                 history[set][hist_idx] = address;
@@ -214,7 +214,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
         //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
-            uint32_t set_index = get_set_index(req->lineAddr)
+            uint32_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
                 bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
@@ -240,7 +240,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
         //find a victim, uses RRIP
         template <typename C> inline uint32_t rank(const MemReq* req, C cands) {
-            uint32_t set_index = get_set_index(req->lineAddr)
+            uint32_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
                 bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
