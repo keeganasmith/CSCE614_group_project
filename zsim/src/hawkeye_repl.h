@@ -24,7 +24,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
 
         //status of all caches
         int8_t* array;
-        int64_t* rrip_pc;   //tracks the last pc to access the respective rrip
+        int64_t* prevPC;    //tracks the last pc to access the respective rrip
+        bool* wasReplaced;  //tracks if the id is to be replacedd
 
         vector<optgen> opt_sims;               //include an optgen fro each set
         hawkeye_predictor predictor;
@@ -35,10 +36,14 @@ class HawkeyeReplPolicy : public ReplPolicy {
             : numSets(_numSets), numWays(_numWays), predictor() {
             //set up the rrip portion
             array = gm_calloc<int8_t>(numSets * numWays);
+            wasReplaced = gm_calloc<bool>(numSets * numWays);
             for(uint32_t i = 0; i < (uint32_t)numSets * numWays; i++) {
                 array[i] = CACHE_AVERSE;
+                wasReplaced[i] = false;
             }
-            rrip_pc = gm_calloc<int64_t>(numSets * numWays);
+
+
+            prevPC = gm_calloc<int64_t>(numSets * numWays);
             //set up each optgen
             opt_sims.reserve(numSets);
             for (uint32_t s = 0; s < numSets; ++s)
@@ -50,8 +55,9 @@ class HawkeyeReplPolicy : public ReplPolicy {
         }
 
         ~HawkeyeReplPolicy() {
-            gm_free(rrip_pc);
+            gm_free(prevPC);
             gm_free(array);
+            gm_free(wasReplaced);
             /*for(uint32_t i = 0; i < numSets; i++) {
                 opt_sims[i].~optgen();
             }
@@ -68,34 +74,35 @@ class HawkeyeReplPolicy : public ReplPolicy {
             int32_t response = opt_sims[set].cache_access(req);
             //do not train if this is the first time seeing this 
             if(response != -1) { 
-                uint64_t last_pc = opt_sims[set].find_last_pc(req->lineAddr);
-                predictor.train_instruction(last_pc, response);
+                uint64_t last = opt_sims[set].find_last_pc(req->lineAddr);
+                predictor.train_instruction(last, response);
             }
             //predict the new cache value to be in the RRIP
             bool pred_friendly = predictor.predict_instruction(req->pc);
             
-            //if it is a a replacement do replacement steps
-            if(array[id] > CACHE_AVERSE) {//cache miss
-                //detrain the old pc for evicting the line
-                if(array[id] - CACHE_AVERSE < CACHE_AVERSE) {
-                    //last pc to access the RRIP array
-                    predictor.train_instruction(rrip_pc[id], 0); //detrain the value if cache friendly
-                    rrip_pc[id] -= (CACHE_AVERSE + 1);
-                }
-                //if  current prediction is friendly age all other caches
-                if(pred_friendly) {
-                    for(uint32_t i = 0; i < numSets * numWays; i++) {
-                        if(array[i] < CACHE_AVERSE - 1)
-                            array[i]++;
+            if(response == 1) {
+                array[id] = CACHE_FRIENDLY;
+            }
+            else {
+                if(wasReplaced[id] && array[id] < CACHE_AVERSE) {
+                    predictor.train_instruction(prevPC[id], 0); //detrain the value if cache friendly
+                    // age just this one set
+                    uint32_t base = set * numWays;
+                    for (uint32_t w = 0; w < numWays; ++w) {
+                    uint32_t idx = base + w;
+                    if (idx != id && array[idx] < CACHE_AVERSE - 1)
+                        array[idx]++;
                     }
                 }
             }
-            rrip_pc[id] = req->pc;
+
+            prevPC[id] = req->pc;
             array[id] = pred_friendly ? CACHE_FRIENDLY : CACHE_AVERSE;
+            wasReplaced[id] = false;
         }
         void replaced(uint32_t id) {
             assert(id < numSets * numWays);
-            array[id] = CACHE_AVERSE + array[id] + 1;//this allows for parallel replacement while retaining previous rrip data
+            wasReplaced[id] = true;
         }
 
         //find a victim, uses RRIP
