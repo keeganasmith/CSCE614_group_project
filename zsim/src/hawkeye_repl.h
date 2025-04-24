@@ -87,8 +87,8 @@ class optgen {
                 uint32_t s = dist(rng);
                 if (!is_sampled[s]) {
                     is_sampled[s] = true;
+                    access_count[s] =0;
                     for(unsigned int i =0; i < vector_size; i++){
-                        access_count[s * vector_size + i] = 0;
                         occupancy_vector[s * vector_size + i] = 0;
                     }
                     sampled++;
