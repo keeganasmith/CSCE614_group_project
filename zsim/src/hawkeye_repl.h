@@ -216,7 +216,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         uint64_t SET_MASK; 
         bool replace_prediction = false;
         uint32_t smallest_set = INT32_MAX;
-        uint32_t largest_set = INT32_MIN;
+        uint32_t largest_set = 0;
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
