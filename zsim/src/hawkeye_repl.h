@@ -65,7 +65,7 @@ class optgen {
             // Initialize data structures
             history.resize(set_count, vector<uint32_t>(vector_size, 0));
             occupancy_vector.resize(set_count, vector<uint32_t>(vector_size, 0));
-            access_count.resize(set_count, 0);
+            access_count = 0;
             is_sampled.resize(set_count, false);
     
             // Set Dueling: randomly select SAMPLE_SETS sets for OPT simulation
@@ -96,8 +96,7 @@ class optgen {
                 history[set][hist_idx] = address;
             }
             
-            int i = wrap_index(hist_idx - 1);
-            int last_accessed_index = -1;
+            unsigned int i = wrap_index(hist_idx - 1);
             while(i != hist_idx){
                 if(history[set][i] == address){
                     break;
@@ -120,7 +119,7 @@ class optgen {
             //so first we check if any elements have #overlapping liveness intervals >= capacity -> cache miss
             //recall occupancy[set][idx] = #overlapping liveness intervals at idx
             //in theory occupancy_vector[set][idx] should never exceed lines per set, but we check just in case.
-            int index = i;
+            unsigned int index = i;
             while(index != hist_idx){
                 if(occupancy_vector[set][index] >= lines_per_set){
                     return false; //no further action needed, cache miss
