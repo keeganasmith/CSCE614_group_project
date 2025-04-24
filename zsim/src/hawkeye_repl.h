@@ -90,6 +90,7 @@ class optgen {
                     access_count[s] =0;
                     for(unsigned int i =0; i < vector_size; i++){
                         occupancy_vector[s * vector_size + i] = 0;
+                        history[s * vector_size + i] = 0;
                     }
                     sampled++;
                 }
@@ -283,7 +284,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 }
             }
             //if no cache adverse lines are found... look for the next max one
-            uint32_t best_cand = -1;
+            uint32_t best_cand = cands.front();
             uint8_t largest = 0;
             for(auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
                 if(array[*ci] > largest){
