@@ -284,10 +284,10 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 }
             }
             //if no cache adverse lines are found... look for the next max one
-            uint32_t best_cand = cands.front();
+            uint32_t best_cand = 0;
             uint8_t largest = 0;
             for(auto ci = cands.begin(); ci != cands.end(); ci.inc()) {
-                if(array[*ci] > largest){
+                if(array[*ci] >= largest){
                     largest = array[*ci];
                     best_cand = *ci;
                 }
