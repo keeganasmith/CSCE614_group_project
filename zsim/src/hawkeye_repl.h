@@ -56,6 +56,7 @@ class optgen {
         explicit optgen(uint64_t _num_lines, uint32_t _numWays)
             : num_lines(_num_lines), num_ways(_numWays)
         {
+            std::cout << "got to optgen constructor\n";
             // Compute reduced vector size using time quantization
             // Original vector_size = associativity * 8
             // With granularity, divide by TIME_QUANTUM
