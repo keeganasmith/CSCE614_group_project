@@ -246,7 +246,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
         uint64_t get_set_index(Address lineAddr){
             uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
             uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
-            uint64_t tag = address >> (blockOffsetBits + indexSetBits);
+            uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
 
             std::cout << "Address: 0x" << std::hex << lineAddr << std::dec << "\n";
             std::cout << "  Tag:        " << tag << "\n";
