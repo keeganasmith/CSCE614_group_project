@@ -4,7 +4,8 @@
 #SBATCH --ntasks=32 --nodes=1 --cpus-per-task=1
 #SBATCH --exclusive
 #SBATCH --output=HAWK_OUT
-#SBATCH --partition=staff 
+#SBATCH --partition=pvc
+#SBATCH --gres=gpu:pvc:1
 
 module purge
 module load WebProxy 

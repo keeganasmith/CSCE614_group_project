@@ -1,0 +1,2 @@
+[S 1F] Following exec(): /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/benchmarks/spec_cpu2006/bin/bzip2 /scratch/user/u.ks124812/CSCE614/CSCE614_group_project/benchmarks/spec_cpu2006/data/bzip2/chicken.jpg 30
+[S 1] Started instance

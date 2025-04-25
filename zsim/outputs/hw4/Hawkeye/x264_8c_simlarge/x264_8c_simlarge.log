@@ -1,0 +1,8 @@
+[H] Starting zsim, built Thu Apr 24 16:39:23 CDT 2025 (rev no git repo)
+[H] Creating global segment, 1024 MBs
+[H] Global segment shmid = 41615384
+[H] Deadlock detection ON
+[S 0] Started instance
+[S 0] Started RR scheduler, quantum=10000 phases
+[H] Child 3986812 done
+[H] All children done, exiting
