@@ -250,22 +250,22 @@ class HawkeyeReplPolicy : public ReplPolicy {
             // uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
             // uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
             
-            if(lineAddr < min_address){
-                min_address = lineAddr;
-                std::cout << "new address diff is: " << max_address - min_address << "\n";
-            }
-            if(lineAddr > max_address){
-                max_address = lineAddr;
-                std::cout << "new address diff is: " << max_address - min_address << "\n";
-            }
-            return (uint64_t)((lineAddr >> blockOffsetBits) & setMask);
+            // if(lineAddr < min_address){
+            //     min_address = lineAddr;
+            //     std::cout << "new address diff is: " << max_address - min_address << "\n";
+            // }
+            // if(lineAddr > max_address){
+            //     max_address = lineAddr;
+            //     std::cout << "new address diff is: " << max_address - min_address << "\n";
+            // }
+            return (uint64_t)((lineAddr) & setMask);
         }
         //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
             uint32_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
-                uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
-                bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
+                //uint64_t lineNumber = req->lineAddr;
+                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
             bool prediction = predictor.predict_instruction(req->pc);
@@ -288,8 +288,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
         template <typename C> inline uint32_t rank(const MemReq* req, C cands) {
             uint64_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
-                uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
-                bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
+                //uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
+                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
             bool replace_prediction = predictor.predict_instruction(req->pc);
