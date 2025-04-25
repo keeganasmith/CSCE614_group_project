@@ -94,8 +94,8 @@ class optgen {
                 is_sampled[i] = true;
                 access_count[i] = 0;
                 for(unsigned int j =0 ; j < vector_size; j++){
-                    occupancy_vector[s * vector_size + j] =0 ;
-                    history[s * vector_size + i] = 0;
+                    occupancy_vector[i * vector_size + j] =0 ;
+                    history[i * vector_size + j] = 0;
                 }
             }
             std::cout << "got to end of optgen constructor\n";
