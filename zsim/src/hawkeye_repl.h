@@ -66,7 +66,7 @@ class optgen {
             set_count = num_lines / num_ways;
             std::cout << "set count: " << set_count << "\n";
             // Initialize data structures
-            history = new uint32_t[set_count * vector_size];
+            history = new uint64_t[set_count * vector_size];
             occupancy_vector = new uint32_t[set_count * vector_size];
             access_count = new uint32_t[set_count];
             is_sampled = new bool[set_count];
