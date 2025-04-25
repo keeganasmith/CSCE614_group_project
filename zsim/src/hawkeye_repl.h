@@ -262,10 +262,10 @@ class HawkeyeReplPolicy : public ReplPolicy {
         }
         //recall: update is called on cache hit
         void update(uint32_t id, const MemReq* req) {
-            uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
+            uint32_t set_index = get_set_index(req->lineAddr);
             if(Opt_Gen.sampled(set_index)){
-                //uint64_t lineNumber = req->lineAddr;
-                bool opt_hit = Opt_Gen.cache_access(req->lineAddr, set_index);
+                uint64_t lineNumber = req->lineAddr >> blockOffsetBits;
+                bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
             bool prediction = predictor.predict_instruction(req->pc);
