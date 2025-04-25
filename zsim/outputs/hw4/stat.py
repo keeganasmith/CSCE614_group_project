@@ -29,12 +29,12 @@ def graph_results(benchmark_stat_mapping, identifier):
     x = np.arange(len(benchmarks))
     width = 0.25
 
-    colors = ["blue", "red", "green"]
+    colors = ["blue", "red", "green", "black"]
     for stat in stats:
         plt.figure(figsize=(12, 6))
         index = 0
         for policy in policies:    
-            offset = (index - len(policies) / 2) * width
+            offset = (index - len(policies)) * width
             plt.bar(x + offset, results[stat][policy], width, label=policy,color=colors[index % len(colors)],alpha=0.7)
             index += 1
 
