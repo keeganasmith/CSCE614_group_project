@@ -221,6 +221,8 @@ class HawkeyeReplPolicy : public ReplPolicy {
         uint32_t blockOffsetBits;
         uint32_t indexSetBits;
         uint64_t* array_pcs;
+        uint64_t min_address = UINT64_MAX;
+        uint64_t max_address = 0;
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays, uint32_t _lineSize) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
@@ -247,11 +249,15 @@ class HawkeyeReplPolicy : public ReplPolicy {
             uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
             uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
             uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
-
-            std::cout << "Address: 0x" << std::hex << lineAddr << std::dec << "\n";
-            std::cout << "  Tag:        " << tag << "\n";
-            std::cout << "  Set index:  " << set_index << "\n";
-            std::cout << "  Offset:     " << offset << "\n";
+            
+            if(lineAddr < min_address){
+                min_address = lineAddr;
+                std::cout << "new address diff is: " << max_address - min_address << "\n";
+            }
+            if(lineAddr > max_address){
+                max_address = lineAddr;
+                std::cout << "new address diff is: " << max_address - min_address << "\n";
+            }
             return (uint64_t)((lineAddr >> blockOffsetBits) & setMask);
         }
         //recall: update is called on cache hit
