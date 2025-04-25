@@ -246,9 +246,9 @@ class HawkeyeReplPolicy : public ReplPolicy {
             delete[] array_pcs;
         }
         uint64_t get_set_index(Address lineAddr){
-            uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
-            uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
-            uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
+            // uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
+            // uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
+            // uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
             
             if(lineAddr < min_address){
                 min_address = lineAddr;
