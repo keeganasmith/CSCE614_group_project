@@ -26,7 +26,7 @@ def graph_results(benchmark_stat_mapping, identifier):
     for stat in stats:
         results[stat] = get_results_for_stat(benchmark_stat_mapping, stat)
 
-    x = np.arange(len(benchmarks))
+    x = np.arange(len(benchmarks)) * 2
     width = 0.25
 
     colors = ["blue", "red", "green", "black"]
