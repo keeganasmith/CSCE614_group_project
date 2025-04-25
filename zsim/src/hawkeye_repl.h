@@ -32,7 +32,6 @@ class optgen {
         static constexpr uint32_t TIME_QUANTUM = 1;
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 1024;
-    
         //counter for each set to track when to advance time-quantum
         uint32_t* access_count;
         // Flags for which sets are sampled
@@ -71,28 +70,32 @@ class optgen {
             access_count = new uint32_t[set_count];
             is_sampled = new bool[set_count];
             std::cout << "finished allocating data structures\n";
-            for(unsigned int i = 0; i < set_count; i++){
-                access_count[i] = 0;
-                is_sampled[i] = false;
-            }
-            
             
     
             // Set Dueling: randomly select SAMPLE_SETS sets for OPT simulation
-            std::mt19937 rng(0);  // fixed seed for reproducibility
-            std::uniform_int_distribution<uint32_t> dist(0, set_count - 1);
-            uint32_t sampled = 0;
-            std::cout << "got to sample loop\n";
-            while (sampled < SAMPLE_SETS) {
-                uint32_t s = dist(rng);
-                if (!is_sampled[s]) {
-                    is_sampled[s] = true;
-                    access_count[s] =0;
-                    for(unsigned int i =0; i < vector_size; i++){
-                        occupancy_vector[s * vector_size + i] = 0;
-                        history[s * vector_size + i] = 0;
-                    }
-                    sampled++;
+            // std::mt19937 rng(0);  // fixed seed for reproducibility
+            // std::uniform_int_distribution<uint32_t> dist(0, set_count - 1);
+            // uint32_t sampled = 0;
+            // std::cout << "got to sample loop\n";
+            // while (sampled < SAMPLE_SETS) {
+            //     uint32_t s = dist(rng);
+            //     if (!is_sampled[s]) {
+            //         is_sampled[s] = true;
+            //         access_count[s] =0;
+            //         for(unsigned int i =0; i < vector_size; i++){
+            //             occupancy_vector[s * vector_size + i] = 0;
+            //             history[s * vector_size + i] = 0;
+            //         }
+            //         sampled++;
+            //     }
+            // }
+
+            for(uint32_t i = 0; i < set_count; i++){
+                is_sampled[i] = true;
+                access_count[i] = 0;
+                for(unsigned int j =0 ; j < vector_size; j++){
+                    occupancy_vector[s * vector_size + j] =0 ;
+                    history[s * vector_size + i] = 0;
                 }
             }
             std::cout << "got to end of optgen constructor\n";
