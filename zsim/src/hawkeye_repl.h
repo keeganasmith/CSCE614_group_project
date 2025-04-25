@@ -168,11 +168,11 @@ class optgen {
 class hawkeye_predictor {
 private:
     uint8_t* predictor_map;
-
-    uint32_t hash_instruction(uint32_t PC) const {
+    uint32_t hash_instruction(uint64_t PC) const {
         // A simple hash function (can be improved depending on use case)
         return PC % map_size;
     }
+    
 
 public:
     hawkeye_predictor() {
@@ -183,14 +183,14 @@ public:
         gm_free(predictor_map);
     }
 
-    bool predict_instruction(uint32_t PC) {
+    bool predict_instruction(uint64_t PC) {
         uint32_t index = hash_instruction(PC);
         uint8_t value = predictor_map[index];
         return value >= 4;
     }
     //trains the hash... 1 for positively train, 0 for negatively trained. takes in the PC
     //higher is better
-    void train_instruction(uint32_t PC, bool taken) {
+    void train_instruction(uint64_t PC, bool taken) {
         uint32_t idx = hash_instruction(PC);
         uint8_t ctr = predictor_map[idx];
         if (taken) { 
@@ -200,6 +200,7 @@ public:
         }
         predictor_map[idx] = ctr;
     }
+    
 };
 
 // Hawkeye Replacement policy
@@ -209,24 +210,27 @@ class HawkeyeReplPolicy : public ReplPolicy {
         uint32_t numLines;
         //status of all caches
         int8_t* array;
+
         uint32_t numWays;
         //Used for hawkeye
         optgen Opt_Gen;
         hawkeye_predictor predictor;
         uint64_t setMask; 
-        bool replace_prediction = false;
         uint32_t smallest_set = INT32_MAX;
         uint32_t largest_set = 0;
         uint32_t blockOffsetBits;
         uint32_t indexSetBits;
+        uint64_t* array_pcs;
     public:
         // add member methods here, refer to repl_policies.h
         explicit HawkeyeReplPolicy(uint32_t _numLines, uint32_t _numWays, uint32_t _lineSize) : numLines(_numLines), numWays(_numWays), Opt_Gen(_numLines, _numWays), predictor() {
             //set up the rrip portion
             std::cout << "got to constructor\n";
             array = gm_calloc<int8_t>(numLines);
+            array_pcs = new uint32_t(numLines);
             for(uint32_t i = 0; i < numLines; i++) {
                 array[i] = cache_averse;
+                array_pcs[i] = 0;
             }
             size_t set_count = _numLines / _numWays;
             std::cout << "finished constructor\n";
@@ -252,20 +256,17 @@ class HawkeyeReplPolicy : public ReplPolicy {
             bool prediction = predictor.predict_instruction(req->pc);
             if(prediction){
                 array[id] = 0;
+                array_pcs[id] = req->pc;
             }
             else{
                 array[id] = cache_averse;
+                array_pcs[id] = req->pc;
             }
         }
 
         //recall: replaced is called when id is inserted into cache after cache miss
         void replaced(uint32_t id) {
-            if(replace_prediction){
-                array[id] = 0;
-            }
-            else{
-                array[id] = cache_averse;
-            }
+            
         }
 
         //find a victim, uses RRIP
@@ -276,7 +277,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
                 bool opt_hit = Opt_Gen.cache_access(lineNumber, set_index);
                 predictor.train_instruction(req->pc, opt_hit);
             }
-            replace_prediction = predictor.predict_instruction(req->pc);
+            bool replace_prediction = predictor.predict_instruction(req->pc);
             if(!replace_prediction){ //means we need to age all lines
                 for(auto ci = cands.begin(); ci != cands.end(); ci.inc()){
                     if(array[*ci] < cache_averse - 1){
@@ -299,6 +300,14 @@ class HawkeyeReplPolicy : public ReplPolicy {
                     best_cand = *ci;
                 }
             }
+            if(replace_prediction){
+                array[best_cand] = 0;
+            }
+            else{
+                array[best_cand] = cache_averse;
+            }
+            predictor.train_instruction(array_pcs[best_cand], false); //detrain evicted cache friendly
+            array_pcs[best_cand] = req->pc;
             return best_cand;
         }
         DECL_RANK_BINDINGS;
