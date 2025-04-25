@@ -40,7 +40,7 @@ class optgen {
     
         // For each set, maintain a history buffer and occupancy vector
         // We allocate for all sets but only use for sampled ones
-        uint32_t* history;
+        uint64_t* history;
         uint32_t* occupancy_vector;
     
         // Wrap an index in the circular buffer
@@ -108,7 +108,7 @@ class optgen {
             return is_sampled[set];
         }
         
-        bool cache_access(uint32_t address, uint32_t set){ //returns true if cache hit, false otherwise
+        bool cache_access(uint64_t address, uint32_t set){ //returns true if cache hit, false otherwise
             if(!is_sampled[set]){
                 return false;
             }
