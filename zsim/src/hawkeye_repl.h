@@ -227,7 +227,7 @@ class HawkeyeReplPolicy : public ReplPolicy {
             //set up the rrip portion
             std::cout << "got to constructor\n";
             array = gm_calloc<int8_t>(numLines);
-            array_pcs = new uint32_t(numLines);
+            array_pcs = new uint64_t(numLines);
             for(uint32_t i = 0; i < numLines; i++) {
                 array[i] = cache_averse;
                 array_pcs[i] = 0;
