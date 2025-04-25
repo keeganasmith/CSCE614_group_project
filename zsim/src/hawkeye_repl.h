@@ -29,7 +29,7 @@ class optgen {
         uint32_t vector_size;         // length of history/occupancy per sampled set
         uint32_t num_ways; //associativity of the cache
         // Granularity parameter: number of accesses per time-quantum
-        static constexpr uint32_t TIME_QUANTUM = 1;
+        static constexpr uint32_t TIME_QUANTUM = 4;
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 1024;
     
@@ -170,7 +170,7 @@ private:
     uint8_t* predictor_map;
     uint32_t hash_instruction(uint64_t PC) const {
         // A simple hash function (can be improved depending on use case)
-        return PC % map_size;
+        return ((PC >> 2) ^ (PC >> 13)) & (map_size - 1);
     }
     
 
@@ -246,18 +246,6 @@ class HawkeyeReplPolicy : public ReplPolicy {
             delete[] array_pcs;
         }
         uint64_t get_set_index(Address lineAddr){
-            // uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
-            // uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
-            // uint64_t tag = lineAddr >> (blockOffsetBits + indexSetBits);
-            
-            // if(lineAddr < min_address){
-            //     min_address = lineAddr;
-            //     std::cout << "new address diff is: " << max_address - min_address << "\n";
-            // }
-            // if(lineAddr > max_address){
-            //     max_address = lineAddr;
-            //     std::cout << "new address diff is: " << max_address - min_address << "\n";
-            // }
             return (uint64_t)((lineAddr >> blockOffsetBits) & setMask);
         }
         //recall: update is called on cache hit
@@ -279,7 +267,6 @@ class HawkeyeReplPolicy : public ReplPolicy {
             }
         }
 
-        //recall: replaced is called when id is inserted into cache after cache miss
         void replaced(uint32_t id) {
             
         }
@@ -321,7 +308,9 @@ class HawkeyeReplPolicy : public ReplPolicy {
             else{
                 array[best_cand] = cache_averse;
             }
-            predictor.train_instruction(array_pcs[best_cand], false); //detrain evicted cache friendly
+            if(Opt_Gen.sampled(set_index)){
+                predictor.train_instruction(array_pcs[best_cand], false); //detrain evicted cache friendly
+            }
             array_pcs[best_cand] = req->pc;
             return best_cand;
         }
