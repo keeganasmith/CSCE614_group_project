@@ -244,6 +244,14 @@ class HawkeyeReplPolicy : public ReplPolicy {
             delete[] array_pcs;
         }
         uint64_t get_set_index(Address lineAddr){
+            uint64_t offset = lineAddr & ((1 << blockOffsetBits) - 1);
+            uint64_t set_index = (lineAddr >> blockOffsetBits) & setMask;
+            uint64_t tag = address >> (blockOffsetBits + indexBits);
+
+            std::cout << "Address: 0x" << std::hex << lineAddr << std::dec << "\n";
+            std::cout << "  Tag:        " << tag << "\n";
+            std::cout << "  Set index:  " << set_index << "\n";
+            std::cout << "  Offset:     " << offset << "\n";
             return (uint64_t)((lineAddr >> blockOffsetBits) & setMask);
         }
         //recall: update is called on cache hit
