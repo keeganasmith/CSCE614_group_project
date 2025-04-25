@@ -29,7 +29,7 @@ class optgen {
         uint32_t vector_size;         // length of history/occupancy per sampled set
         uint32_t num_ways; //associativity of the cache
         // Granularity parameter: number of accesses per time-quantum
-        static constexpr uint32_t TIME_QUANTUM = 4;
+        static constexpr uint32_t TIME_QUANTUM = 1;
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 1024;
     
