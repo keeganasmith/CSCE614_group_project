@@ -5,7 +5,7 @@
 #include "repl_policies.h"
 
 //using std::vector; 
-#define OCCUPANCY_VECTOR_MULTIPLIER 8
+#define OCCUPANCY_VECTOR_MULTIPLIER 16
 /*Optgen calculates the belady's algorithm using livness intervals with the occupancy vector
 the size of the vector is the size of a set(ie the amount of ways) times 8*/
 class optgen {
