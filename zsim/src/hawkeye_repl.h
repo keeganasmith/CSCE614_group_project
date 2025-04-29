@@ -33,7 +33,7 @@ class optgen {
         // Number of sets to sample for set dueling
         static constexpr uint32_t SAMPLE_SETS = 1024;
         //counter for each set to track when to advance time-quantum
-        uint32_t* access_count;
+        uint64_t* access_count;
         // Flags for which sets are sampled
         bool* is_sampled;
     
@@ -43,8 +43,8 @@ class optgen {
         uint32_t* occupancy_vector;
     
         // Wrap an index in the circular buffer
-        inline int32_t wrap_index(int32_t idx) const {
-            int result =  idx % vector_size;
+        inline int64_t wrap_index(int64_t idx) const {
+            int64_t result =  idx % vector_size;
             if(result < 0){
                 result += vector_size;
             }
@@ -64,6 +64,7 @@ class optgen {
             std::cout << "vector size: " << vector_size << "\n";
             set_count = num_lines / num_ways;
             std::cout << "set count: " << set_count << "\n";
+            std::cout << "num ways: " << num_ways << "\n";
             // Initialize data structures
             history = new uint64_t[set_count * vector_size];
             occupancy_vector = new uint32_t[set_count * vector_size];
